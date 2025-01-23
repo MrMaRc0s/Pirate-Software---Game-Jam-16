@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bscb38e22u553"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_7u2xi"]
+[ext_resource type="Texture2D" uid="uid://dsj7e2l4vkedd" path="res://Enemies/Neutrophils/Neutrophils.png" id="2_wiirh"]
+[ext_resource type="Texture2D" uid="uid://xedptlnvadk4" path="res://Enemies/Neutrophils/Neutrophils Zoom in.png" id="3_66nhx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lvwa"]
+atlas = ExtResource("2_wiirh")
+region = Rect2(0, 0, 240, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7s5mq"]
+atlas = ExtResource("3_66nhx")
+region = Rect2(0, 0, 228, 209)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucdao"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lvwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7s5mq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_7u2xi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ucdao")
+frame = 1
+frame_progress = 0.056836
