@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwg1qlu07jlk3"]
 
-[ext_resource type="Texture2D" uid="uid://c6d8n6delh7qg" path="res://Enemies/Assets/Antibodies.png" id="1_6u5md"]
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_f5m4x"]
+[ext_resource type="Texture2D" uid="uid://br55od18uw3pl" path="res://Enemies/Assets/Antibodies/ANTIBODIES.png" id="2_e33oy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_6u5md")
+"texture": ExtResource("2_e33oy")
 }],
 "loop": true,
 "name": &"default",
@@ -15,12 +15,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wjbuo"]
-radius = 19.57
-height = 173.12
+radius = 8.31
+height = 29.12
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qmqa"]
-radius = 86.56
-height = 268.82
+radius = 19.57
+height = 58.28
 
 [node name="Antibodies" type="CharacterBody2D"]
 script = ExtResource("1_f5m4x")
@@ -30,12 +30,14 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 frame_progress = 0.613338
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
+position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_wjbuo")
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+visible = false
 shape = SubResource("CapsuleShape2D_3qmqa")
 
 [node name="AttackCooldown" type="Timer" parent="."]
@@ -43,10 +45,10 @@ wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(1, 0.15, 0.15, 1)
-offset_left = -153.0
-offset_top = 167.0
-offset_right = 152.0
-offset_bottom = 187.0
+offset_left = -32.0
+offset_top = 19.0
+offset_right = 32.0
+offset_bottom = 26.0
 show_percentage = false
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]

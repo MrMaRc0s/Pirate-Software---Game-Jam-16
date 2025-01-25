@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://kqy6xutjycwn"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_3dmky"]
-[ext_resource type="Texture2D" uid="uid://bclqu7fjrttli" path="res://Enemies/Assets/PlasmaCell.png" id="2_ylg1d"]
+[ext_resource type="Texture2D" uid="uid://crhpbdqtk5lm3" path="res://Enemies/Assets/PlasmaCell/PlasmaCell.png" id="2_vmi3n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ylg1d")
+"texture": ExtResource("2_vmi3n")
 }],
 "loop": true,
 "name": &"default",
@@ -15,11 +15,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cu6k"]
-radius = 57.85
-height = 259.25
+radius = 14.625
+height = 29.2501
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
-radius = 182.26
+radius = 32.5576
 
 [node name="PlasmaCell" type="CharacterBody2D"]
 script = ExtResource("1_3dmky")
@@ -29,7 +29,7 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 frame_progress = 0.613338
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.005, 3)
+position = Vector2(-1, 0)
 rotation = 1.07687
 shape = SubResource("CapsuleShape2D_4cu6k")
 

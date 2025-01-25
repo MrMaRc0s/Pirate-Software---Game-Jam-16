@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgp6gsowxrm0b"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_60607"]
-[ext_resource type="Texture2D" uid="uid://dui0wclodrcii" path="res://Enemies/Assets/NaturalKillerCells.png" id="2_wkh3x"]
+[ext_resource type="Texture2D" uid="uid://bqiq0lswgjloo" path="res://Enemies/Assets/NaturalKillerCell/NaturalKillerCell.png" id="2_isep4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_wkh3x")
+"texture": ExtResource("2_isep4")
 }],
 "loop": true,
 "name": &"default",
@@ -15,10 +15,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oalgo"]
-radius = 96.13
+radius = 17.1172
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
-radius = 143.98
+radius = 19.8494
 
 [node name="NaturalKillerCell" type="CharacterBody2D"]
 script = ExtResource("1_60607")
@@ -28,7 +28,6 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 frame_progress = 0.613338
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(4, 3)
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]

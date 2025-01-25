@@ -1,21 +1,17 @@
 extends CharacterBody2D
 
 
-const SPEED = 100
+const SPEED = 00
 const maxHealth = 50
 var player
 var health = maxHealth
 var playerInRange = false
 var attackCooldown = false
-var dmg = 5
+var dmg = 0
 
 func _ready():
 	player = get_node("../Player")
 	$AnimatedSprite2D.play("default")
-	if player.position.x < position.x:
-		$AnimatedSprite2D.flip_h = true
-	else:
-		$AnimatedSprite2D.flip_h = false
 
 func takeDmg(amount: int):
 	health -= amount
@@ -28,6 +24,7 @@ func enemy():
 
 
 func _physics_process(delta):
+	$AnimatedSprite2D.flip_h = (player.position.x < position.x)
 	updateHealthbar()
 	attackPlayer()
 	if Global.PlayerAlive:

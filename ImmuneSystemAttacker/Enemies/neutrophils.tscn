@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://g15hyy7fb2oe"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_erm3e"]
-[ext_resource type="Texture2D" uid="uid://dsj7e2l4vkedd" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
+[ext_resource type="Texture2D" uid="uid://dx623sthrn60h" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
@@ -15,10 +15,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oalgo"]
-radius = 96.13
+radius = 13.0384
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
-radius = 230.11
+radius = 79.0253
 
 [node name="Neutrophil" type="CharacterBody2D"]
 script = ExtResource("1_erm3e")
@@ -28,7 +28,6 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 frame_progress = 0.613338
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(4, 3)
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]

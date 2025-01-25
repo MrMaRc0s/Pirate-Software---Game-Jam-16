@@ -1,56 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://bscb38e22u553"]
+[gd_scene load_steps=6 format=3 uid="uid://bscb38e22u553"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_7u2xi"]
-[ext_resource type="Texture2D" uid="uid://dsj7e2l4vkedd" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_wiirh"]
-[ext_resource type="Texture2D" uid="uid://dphj3kpy3u78q" path="res://icon.svg" id="2_xco34"]
-[ext_resource type="Texture2D" uid="uid://xedptlnvadk4" path="res://Enemies/Assets/Neutrophils/Neutrophils Zoom in.png" id="3_66nhx"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_1bcy0"]
-radius = 96.13
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0lvwa"]
-atlas = ExtResource("2_wiirh")
-region = Rect2(0, 0, 240, 220)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7s5mq"]
-atlas = ExtResource("3_66nhx")
-region = Rect2(0, 0, 228, 209)
+[ext_resource type="Texture2D" uid="uid://dtuoejjw1xqmo" path="res://PlayerModel/Player.png" id="3_1sjjo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ucdao"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xco34")
-}],
-"loop": true,
-"name": &"attackAnim",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0lvwa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7s5mq")
+"texture": ExtResource("3_1sjjo")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq8xq"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6s8jg"]
-radius = 258.82
+radius = 36.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7u2xi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1bcy0")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4, -4)
 sprite_frames = SubResource("SpriteFrames_ucdao")
-animation = &"attackAnim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_tq8xq")
 
 [node name="PlayerRange" type="Area2D" parent="."]
 
@@ -60,7 +37,7 @@ shape = SubResource("CircleShape2D_6s8jg")
 [node name="AttackCooldown" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 0
 limit_right = 1150
@@ -70,10 +47,10 @@ drag_vertical_enabled = true
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.647059, 0.345098, 0.984314)
-offset_left = -83.0
-offset_top = 97.0
-offset_right = 82.0
-offset_bottom = 111.0
+offset_left = -14.0
+offset_top = 15.0
+offset_right = 14.0
+offset_bottom = 19.0
 show_percentage = false
 
 [node name="HealthRegen" type="Timer" parent="."]
