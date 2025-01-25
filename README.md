@@ -11,6 +11,7 @@ This README outlines the tasks and features required to improve the game. Please
    - Develop animations for:
      - **Idle**: A resting or neutral state for the character.
      - **Attacking**: A dynamic animation showcasing the character's attack motion.
+     - **dying**: A dynamic animation showcasing the Player Death.
 
 ### UI Development
 3. **Main Menu**:
@@ -24,22 +25,29 @@ This README outlines the tasks and features required to improve the game. Please
    - Set up and configure spawners to introduce enemies into the game world in a balanced manner.
 6. **2D Last Boss**:
    - Develop the last boss 2D asset with appropriate animations.
+7. **Leveling System**:
+   - Develop a leveling system and xp counter.
+8. **Perks**:
+   - Develop perks in order to give the player the ability to choose perks on level up.
 
 ### Bug Fix
-7. **Combat System Issue**:
+9. **Combat System Issue**:
    - Fix a bug where, if two enemies enter the character's range, only one enemy can be killed.
    - Ensure that:
      - Both enemies can be killed.
      - The character does not take damage from multiple sources unfairly.
 
-### Misic
-8. **We Need 2 Songs**:
+### Sounds
+10. **We Need 2 Songs**:
    - one song for the main menu.
    - one song for in game
    - (optional) one song for the bossfights
+11. **sounds effects**:
+   - sound effect for attacking for each character (there are 7 characters)
+   - one sound effect for taking damage
   
 ### Map
-9. **TileMap**:
+12. **TileMap**:
    - Develop a Tilemap
 
 ### Thank you for contributing to this project! Let’s make this game great together.
