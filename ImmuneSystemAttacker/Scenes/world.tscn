@@ -1,12 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://dij8dw6m3qkwh"]
+[gd_scene load_steps=6 format=4 uid="uid://dij8dw6m3qkwh"]
 
 [ext_resource type="PackedScene" uid="uid://bscb38e22u553" path="res://Scenes/player.tscn" id="2_0d7ca"]
 [ext_resource type="Texture2D" uid="uid://dj7uhxvdheald" path="res://Tileset/Red tiles.jpg" id="2_tm8ol"]
 [ext_resource type="PackedScene" uid="uid://dd5xkrxqocfcf" path="res://Enemies/macrophage.tscn" id="4_0qctn"]
-[ext_resource type="PackedScene" uid="uid://cwg1qlu07jlk3" path="res://Enemies/antibodies.tscn" id="4_aou8g"]
-[ext_resource type="PackedScene" uid="uid://cgp6gsowxrm0b" path="res://Enemies/naturalKillerCell.tscn" id="5_wjosv"]
-[ext_resource type="PackedScene" uid="uid://g15hyy7fb2oe" path="res://Enemies/neutrophils.tscn" id="6_34jxj"]
-[ext_resource type="PackedScene" uid="uid://kqy6xutjycwn" path="res://Enemies/plasmaCell.tscn" id="7_kgwm5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va7no"]
 texture = ExtResource("2_tm8ol")
@@ -236,17 +232,8 @@ texture = ExtResource("2_tm8ol")
 13:14/0 = 0
 14:14/0 = 0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2yqxm"]
-load_path = "res://.godot/imported/red.png-ac55db9dc2d1e83b93a7b7833e0e8374.ctex"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n8x3x"]
-texture = SubResource("CompressedTexture2D_2yqxm")
-texture_region_size = Vector2i(1, 1)
-38:66/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_g6e00"]
 sources/0 = SubResource("TileSetAtlasSource_va7no")
-sources/1 = SubResource("TileSetAtlasSource_n8x3x")
 
 [node name="World" type="Node2D"]
 
@@ -259,18 +246,6 @@ position = Vector2(426, 163)
 
 [node name="Player" parent="TileMapLayer" instance=ExtResource("2_0d7ca")]
 position = Vector2(751, 411)
-
-[node name="Antibodies" parent="TileMapLayer" instance=ExtResource("4_aou8g")]
-position = Vector2(554, 163)
-
-[node name="NaturalKillerCell" parent="TileMapLayer" instance=ExtResource("5_wjosv")]
-position = Vector2(359, 162)
-
-[node name="Neutrophil" parent="TileMapLayer" instance=ExtResource("6_34jxj")]
-position = Vector2(504, 166)
-
-[node name="PlasmaCell" parent="TileMapLayer" instance=ExtResource("7_kgwm5")]
-position = Vector2(609, 164)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false

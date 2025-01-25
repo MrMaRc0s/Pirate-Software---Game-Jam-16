@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 00
+const SPEED = 20
 const maxHealth = 50
 var player
 var health = maxHealth

@@ -1,13 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd5xkrxqocfcf"]
+[gd_scene load_steps=10 format=3 uid="uid://dd5xkrxqocfcf"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_5upri"]
-[ext_resource type="Texture2D" uid="uid://bsd2e7xrmuj7c" path="res://Enemies/Assets/Macrophage/Macrophage.png" id="2_ugr8u"]
+[ext_resource type="Texture2D" uid="uid://cpxxy57fxy4xt" path="res://Enemies/Assets/Macrophage/Macrophage.png" id="2_ugr8u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85tde"]
+atlas = ExtResource("2_ugr8u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa2an"]
+atlas = ExtResource("2_ugr8u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cr0jr"]
+atlas = ExtResource("2_ugr8u")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1fik"]
+atlas = ExtResource("2_ugr8u")
+region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ugr8u")
+"texture": SubResource("AtlasTexture_85tde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa2an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cr0jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1fik")
 }],
 "loop": true,
 "name": &"default",
@@ -25,7 +50,8 @@ script = ExtResource("1_5upri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
-frame_progress = 0.613338
+frame = 1
+frame_progress = 0.934514
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 light_mask = 2
