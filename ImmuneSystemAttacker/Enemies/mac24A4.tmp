@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dd5xkrxqocfcf"]
+
+[ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_5upri"]
+[ext_resource type="Texture2D" uid="uid://brdk16324wbdy" path="res://Enemies/Assets/Macrophage.png" id="1_ux8w3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ux8w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ux8w3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oalgo"]
+radius = 163.12
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
+radius = 230.11
+
+[node name="Macrophage" type="CharacterBody2D"]
+script = ExtResource("1_5upri")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y8p3g")
+frame_progress = 0.613338
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oalgo")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ojmti")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.663
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

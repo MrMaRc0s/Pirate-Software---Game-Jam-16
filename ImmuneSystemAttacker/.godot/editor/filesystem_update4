@@ -1,1 +1,5 @@
-res://Scenes/world.tscn
+res://Enemies/neutrophils.tscn
+res://Enemies/macrophage.tscn
+res://Enemies/naturalKillerCell.tscn
+res://Enemies/plasmaCell.tscn
+res://Enemies/antibodies.tscn

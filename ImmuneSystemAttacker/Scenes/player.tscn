@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bscb38e22u553"]
+[gd_scene load_steps=10 format=3 uid="uid://bscb38e22u553"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_7u2xi"]
-[ext_resource type="Texture2D" uid="uid://dsj7e2l4vkedd" path="res://Enemies/Neutrophils/Neutrophils.png" id="2_wiirh"]
-[ext_resource type="Texture2D" uid="uid://xedptlnvadk4" path="res://Enemies/Neutrophils/Neutrophils Zoom in.png" id="3_66nhx"]
+[ext_resource type="Script" path="res://script/player.gd" id="1_7u2xi"]
+[ext_resource type="Texture2D" uid="uid://dsj7e2l4vkedd" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_wiirh"]
+[ext_resource type="Texture2D" uid="uid://dphj3kpy3u78q" path="res://icon.svg" id="2_xco34"]
+[ext_resource type="Texture2D" uid="uid://xedptlnvadk4" path="res://Enemies/Assets/Neutrophils/Neutrophils Zoom in.png" id="3_66nhx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bcy0"]
+radius = 96.13
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0lvwa"]
 atlas = ExtResource("2_wiirh")
@@ -16,6 +20,14 @@ region = Rect2(0, 0, 228, 209)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_xco34")
+}],
+"loop": true,
+"name": &"attackAnim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0lvwa")
 }, {
 "duration": 1.0,
@@ -26,12 +38,49 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6s8jg"]
+radius = 258.82
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_7u2xi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1bcy0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -4)
 sprite_frames = SubResource("SpriteFrames_ucdao")
-frame = 1
-frame_progress = 0.056836
+animation = &"attackAnim"
+
+[node name="PlayerRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRange"]
+shape = SubResource("CircleShape2D_6s8jg")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 1150
+limit_bottom = 700
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.647059, 0.345098, 0.984314)
+offset_left = -83.0
+offset_top = 97.0
+offset_right = 82.0
+offset_bottom = 111.0
+show_percentage = false
+
+[node name="HealthRegen" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="PlayerRange" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="PlayerRange" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]

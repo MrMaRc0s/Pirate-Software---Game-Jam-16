@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgp6gsowxrm0b"]
+
+[ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_60607"]
+[ext_resource type="Texture2D" uid="uid://dui0wclodrcii" path="res://Enemies/Assets/NaturalKillerCells.png" id="2_wkh3x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wkh3x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oalgo"]
+radius = 96.13
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
+radius = 143.98
+
+[node name="NaturalKillerCell" type="CharacterBody2D"]
+script = ExtResource("1_60607")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y8p3g")
+frame_progress = 0.613338
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(4, 3)
+shape = SubResource("CircleShape2D_oalgo")
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_ojmti")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.663
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0.15, 0.15, 1)
+offset_left = -153.0
+offset_top = 167.0
+offset_right = 152.0
+offset_bottom = 187.0
+show_percentage = false
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
