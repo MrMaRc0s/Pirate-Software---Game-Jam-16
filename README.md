@@ -37,6 +37,10 @@ This README outlines the tasks and features required to improve the game. Please
    - one song for the main menu.
    - one song for in game
    - (optional) one song for the bossfights
+  
+### Map
+9. **TileMap**:
+   - Develop a Tilemap
 
 ### Thank you for contributing to this project! Let’s make this game great together.
 
