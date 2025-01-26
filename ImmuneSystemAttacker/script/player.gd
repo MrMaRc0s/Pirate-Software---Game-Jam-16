@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
 # Variables
-var targetEnemy: Node2D = null
-const speed = 100.0
-const maxHealth = 100
-var face = false
-var enemyInRange = false
-var attackCooldown = true
-var health = maxHealth
-var dmg = 10  # Default damage value
+var enemiesInRange: Array[Node2D] = []  # Replace targetEnemy with array
+const speed : int = 100
+const maxHealth : int = 100
+var face : bool = false
+var attackCooldown : bool = true
+var health : int = maxHealth
+var dmg : int = 10  # Default damage value
+var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -41,20 +41,32 @@ func play_anim(anim: StringName):
 	animation.play(anim)
 
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("takeDmg"):
-		enemyInRange = true
-		targetEnemy = body
+	if body.has_method("takeDmg") and not enemiesInRange.has(body):
+		enemiesInRange.append(body)
 
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("takeDmg"):
-		enemyInRange = false
-		targetEnemy = null
+		enemiesInRange.erase(body)
 		
 func AttackEnemy():
-	if enemyInRange and attackCooldown and targetEnemy != null:
+	if not enemiesInRange.is_empty() and attackCooldown:
 		attackCooldown = false
 		$AttackCooldown.start()
-		targetEnemy.takeDmg(dmg)
+		
+		 # Find the closest enemy
+		var closest_enemy = null
+		var closest_distance = INF
+		for enemy in enemiesInRange:
+			if is_instance_valid(enemy):
+				var distance = position.distance_to(enemy.position)
+				if distance < closest_distance:
+					closest_distance = distance
+					closest_enemy = enemy
+		
+		if closest_enemy:
+			closest_enemy.takeDmg(dmg)
+			if closest_enemy.health <= 0:
+				enemiesInRange.erase(closest_enemy)
 
 func take_damage(amount: int):
 	health -= amount
@@ -78,8 +90,11 @@ func updateHealthbar():
 func _on_health_regen_timeout() -> void:
 	if health < maxHealth:
 		health += 5
+		print("HealthRegen +5 hp new player health ", health)
 		if health > maxHealth:
 			health = maxHealth
 	if health <= 0:
 		health = 0
 		$HealthRegen.stop()
+func player():
+	pass

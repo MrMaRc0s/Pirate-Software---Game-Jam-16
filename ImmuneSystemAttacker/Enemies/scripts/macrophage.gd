@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 
-const SPEED = 20
-const maxHealth = 50
+var normalSpeed : int = 20
+var SPEED : int = normalSpeed
+const maxHealth : int = 50
 var player
-var health = maxHealth
-var playerInRange = false
-var attackCooldown = false
-var dmg = 0
+var health : int = maxHealth
+var playerInRange : bool = false
+var attackCooldown : bool = false
+var dmg : int = 1
 
 func _ready():
 	player = get_node("../Player")
@@ -17,7 +18,7 @@ func takeDmg(amount: int):
 	health -= amount
 	if health <= 0:
 		die()
-	print("enemy health = ", health)
+	print("enemy took ", amount, " damage. Remaining health: ", health)
 
 func enemy():
 	pass
@@ -37,12 +38,14 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
+		SPEED = 0
 		playerInRange = true
 		
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
+		SPEED = normalSpeed
 		playerInRange = false
 		
 func attackPlayer():
@@ -50,7 +53,6 @@ func attackPlayer():
 		player.take_damage(dmg)
 		attackCooldown = true
 		$AttackCooldown.start()
-		print("enemy health = ", health)
 	
 
 func die():
