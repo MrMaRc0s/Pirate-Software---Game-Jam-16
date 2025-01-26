@@ -7,7 +7,7 @@ var enemiesInRange: Array[Node2D] = []
 var face : bool = false
 var attackCooldown : bool = true
 var health : int = maxHealth
-@export var dmg : int = 10
+@export var dmg : int = 15
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 @export var nextLvl: int = 500
 var level : int = 1
@@ -23,7 +23,7 @@ func _physics_process(delta):
 	move_and_slide() 
 	AttackEnemy()
 
-func player_movement(delta):
+func player_movement(_delta):
 	# Reset movement velocity
 	velocity = Vector2.ZERO
 
@@ -102,16 +102,16 @@ func giveXp(amount: int):
 	print("xp= ",xp)
 	if xp >=nextLvl:
 		level+=1
-		xp = 0
+		xp = nextLvl - xp
 		nextLvl+=200
-		print("Level up! u are now ", level)
+		print("Leveled up!!! ", level)
 
 func _on_health_regen_timeout() -> void:
 	if health < maxHealth:
-		health += 5
+		health += 2
 		if health > maxHealth:
 			health = maxHealth
-			print("HealthRegen +5 hp new player health ", health)
+			print("HealthRegen +2 hp new player health ", health)
 	if health <= 0:
 		health = 0
 		$HealthRegen.stop()

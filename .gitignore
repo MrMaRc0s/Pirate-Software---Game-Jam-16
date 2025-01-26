@@ -1,0 +1,40 @@
+# Godot-specific files
+.import/
+.export/
+*.import
+*.godot.tmp
+*.godot.server
+*.godot.android
+*.godot.windows
+*.godot.osx
+*.godot.linuxbsd
+./ImmuneSystemAttacker/.godot/
+
+
+# Exported builds
+/bin/
+*.exe
+*.apk
+*.ipa
+*.pck
+*.zip
+*.tar.gz
+*.x86
+*.x86_64
+*.dmg
+*.app
+
+# User-specific files
+*.cfg
+*.preset
+project.godot.user
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+

@@ -32,6 +32,7 @@ shape = SubResource("RectangleShape2D_tq8xq")
 [node name="PlayerRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRange"]
+scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_6s8jg")
 
 [node name="AttackCooldown" type="Timer" parent="."]
@@ -54,7 +55,7 @@ offset_bottom = 19.0
 show_percentage = false
 
 [node name="HealthRegen" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="Xpbar" type="ProgressBar" parent="."]

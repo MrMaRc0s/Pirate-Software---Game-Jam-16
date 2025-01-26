@@ -1,0 +1,11 @@
+res://Scenes/world.tscn
+res://Scenes/Menu.tscn
+res://script/player.gd
+res://Scenes/player.tscn
+res://Enemies/plasmaCell.tscn
+res://Enemies/scripts/macrophage.gd
+res://Enemies/naturalKillerCell.tscn
+res://Enemies/natural_killer_cell.gd
+res://Enemies/neutrophils.tscn
+res://Enemies/neutrophils.gd
+res://Enemies/macrophage.tscn

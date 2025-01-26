@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://g15hyy7fb2oe"]
 
-[ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_erm3e"]
+[ext_resource type="Script" path="res://Enemies/neutrophils.gd" id="1_6rke4"]
 [ext_resource type="Texture2D" uid="uid://cqdpo5ik50cel" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfhb5"]
@@ -53,7 +53,7 @@ radius = 13.0384
 radius = 79.0253
 
 [node name="Neutrophil" type="CharacterBody2D"]
-script = ExtResource("1_erm3e")
+script = ExtResource("1_6rke4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
