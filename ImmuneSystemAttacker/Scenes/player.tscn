@@ -57,6 +57,14 @@ show_percentage = false
 wait_time = 5.0
 autostart = true
 
+[node name="Xpbar" type="ProgressBar" parent="."]
+modulate = Color(0.231373, 0.443137, 1, 1)
+offset_left = -39.0
+offset_top = 21.0
+offset_right = 39.0
+offset_bottom = 25.0
+show_percentage = false
+
 [connection signal="body_entered" from="PlayerRange" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerRange" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

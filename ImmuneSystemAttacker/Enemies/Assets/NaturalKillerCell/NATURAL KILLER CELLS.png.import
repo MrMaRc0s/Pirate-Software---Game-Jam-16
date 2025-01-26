@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqiq0lswgjloo"
-path="res://.godot/imported/NaturalKillerCell.png-2ff5182a5e4d65c1cb772310b1c4fba1.ctex"
+uid="uid://dawpr5btbjnlf"
+path="res://.godot/imported/NATURAL KILLER CELLS.png-59c7852c74bc49a3e738b3a3e56962b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Assets/NaturalKillerCell/NaturalKillerCell.png"
-dest_files=["res://.godot/imported/NaturalKillerCell.png-2ff5182a5e4d65c1cb772310b1c4fba1.ctex"]
+source_file="res://Enemies/Assets/NaturalKillerCell/NATURAL KILLER CELLS.png"
+dest_files=["res://.godot/imported/NATURAL KILLER CELLS.png-59c7852c74bc49a3e738b3a3e56962b6.ctex"]
 
 [params]
 

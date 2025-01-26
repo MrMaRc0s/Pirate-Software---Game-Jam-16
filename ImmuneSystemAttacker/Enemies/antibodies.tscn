@@ -44,7 +44,7 @@ shape = SubResource("CapsuleShape2D_3qmqa")
 wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-modulate = Color(1, 0.15, 0.15, 1)
+modulate = Color(0.886275, 0.00392157, 0.886275, 1)
 offset_left = -32.0
 offset_top = 19.0
 offset_right = 32.0

@@ -1,17 +1,18 @@
 extends CharacterBody2D
 
 
-var normalSpeed : int = 20
+@export var normalSpeed : int = 70
 var SPEED : int = normalSpeed
-const maxHealth : int = 50
+@export var maxHealth : int = 50
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
 var attackCooldown : bool = false
-var dmg : int = 1
+@export var dmg : int = 1
+@export var xpDrop : int = 500
 
 func _ready():
-	player = get_node("../Player")
+	player = get_node("../../Player")
 	$AnimatedSprite2D.play("default")
 
 func takeDmg(amount: int):
@@ -25,15 +26,13 @@ func enemy():
 
 
 func _physics_process(delta):
-	$AnimatedSprite2D.flip_h = (player.position.x < position.x)
 	updateHealthbar()
 	attackPlayer()
 	if Global.PlayerAlive:
+		$AnimatedSprite2D.flip_h = (player.position.x < position.x)
 		var direction = (player.position - position).normalized()
 		velocity = direction * SPEED
 		move_and_slide()
-	if health <=0:
-		self.queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -56,6 +55,7 @@ func attackPlayer():
 	
 
 func die():
+	player.giveXp(xpDrop)
 	queue_free()
 	print("Enemy has been killed")
 

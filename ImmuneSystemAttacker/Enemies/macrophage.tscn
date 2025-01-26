@@ -66,11 +66,11 @@ shape = SubResource("CircleShape2D_ojmti")
 wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-modulate = Color(1, 0.15, 0.15, 1)
-offset_left = -14.0
-offset_top = -21.0
-offset_right = 13.0
-offset_bottom = -17.0
+modulate = Color(0.886275, 0.00392157, 0.886275, 1)
+offset_left = -16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 23.0
 show_percentage = false
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]

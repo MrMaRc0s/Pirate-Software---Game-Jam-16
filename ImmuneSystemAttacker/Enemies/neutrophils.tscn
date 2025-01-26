@@ -1,13 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://g15hyy7fb2oe"]
+[gd_scene load_steps=11 format=3 uid="uid://g15hyy7fb2oe"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_erm3e"]
-[ext_resource type="Texture2D" uid="uid://dx623sthrn60h" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
+[ext_resource type="Texture2D" uid="uid://cqdpo5ik50cel" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfhb5"]
+atlas = ExtResource("2_jmg64")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s067r"]
+atlas = ExtResource("2_jmg64")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85qfv"]
+atlas = ExtResource("2_jmg64")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p230a"]
+atlas = ExtResource("2_jmg64")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tc2k"]
+atlas = ExtResource("2_jmg64")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jmg64")
+"texture": SubResource("AtlasTexture_sfhb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s067r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85qfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p230a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tc2k")
 }],
 "loop": true,
 "name": &"default",
@@ -25,7 +57,7 @@ script = ExtResource("1_erm3e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
-frame_progress = 0.613338
+frame_progress = 0.228642
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oalgo")
@@ -39,11 +71,11 @@ shape = SubResource("CircleShape2D_ojmti")
 wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-modulate = Color(1, 0.15, 0.15, 1)
-offset_left = -153.0
-offset_top = 167.0
-offset_right = 152.0
-offset_bottom = 187.0
+modulate = Color(0.886374, 0.003229, 0.885386, 1)
+offset_left = -29.0
+offset_top = 18.0
+offset_right = 27.0
+offset_bottom = 26.0
 show_percentage = false
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]

@@ -1,22 +1,26 @@
 extends CharacterBody2D
 
 # Variables
-var enemiesInRange: Array[Node2D] = []  # Replace targetEnemy with array
-const speed : int = 100
-const maxHealth : int = 100
+var enemiesInRange: Array[Node2D] = []
+@export var speed : int = 100
+@export var maxHealth : int = 100
 var face : bool = false
 var attackCooldown : bool = true
 var health : int = maxHealth
-var dmg : int = 10  # Default damage value
+@export var dmg : int = 10
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
+@export var nextLvl: int = 500
+var level : int = 1
+var xp : int = 0
 
 func _ready():
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta):
 	updateHealthbar()
+	updateXpbar()
 	player_movement(delta)
-	move_and_slide()  # This works without arguments in Godot 4.x
+	move_and_slide() 
 	AttackEnemy()
 
 func player_movement(delta):
@@ -84,15 +88,30 @@ func die():
 
 func updateHealthbar():
 	var healthbar = $Healthbar
+	healthbar.max_value = maxHealth
 	healthbar.value = health
 	healthbar.visible = (health < maxHealth)
+	
+func updateXpbar():
+	var xpbar = $Xpbar
+	xpbar.max_value = nextLvl
+	xpbar.value = xp
+
+func giveXp(amount: int):
+	xp+=amount
+	print("xp= ",xp)
+	if xp >=nextLvl:
+		level+=1
+		xp = 0
+		nextLvl+=200
+		print("Level up! u are now ", level)
 
 func _on_health_regen_timeout() -> void:
 	if health < maxHealth:
 		health += 5
-		print("HealthRegen +5 hp new player health ", health)
 		if health > maxHealth:
 			health = maxHealth
+			print("HealthRegen +5 hp new player health ", health)
 	if health <= 0:
 		health = 0
 		$HealthRegen.stop()
