@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var normalSpeed : int = 70
+@export var normalSpeed : int = 40
 var SPEED : int = normalSpeed
 @export var maxHealth : int = 50
 var player
@@ -9,7 +9,7 @@ var health : int = maxHealth
 var playerInRange : bool = false
 var attackCooldown : bool = false
 @export var dmg : int = 10
-@export var xpDrop : int = 500
+@export var xpDrop : int = 200
 
 func _ready():
 	player = get_node("../../Player")

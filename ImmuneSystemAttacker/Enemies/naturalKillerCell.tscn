@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cgp6gsowxrm0b"]
 
-[ext_resource type="Script" path="res://Enemies/natural_killer_cell.gd" id="1_gbspc"]
+[ext_resource type="Script" path="res://Enemies/scripts/natural_killer_cell.gd" id="1_gbspc"]
 [ext_resource type="Texture2D" uid="uid://dawpr5btbjnlf" path="res://Enemies/Assets/NaturalKillerCell/NATURAL KILLER CELLS.png" id="2_tgj28"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfa2e"]

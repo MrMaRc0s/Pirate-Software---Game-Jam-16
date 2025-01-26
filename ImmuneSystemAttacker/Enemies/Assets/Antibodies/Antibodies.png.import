@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br55od18uw3pl"
-path="res://.godot/imported/ANTIBODIES.png-fc494b52ae02021774a7e2e94fb794db.ctex"
+uid="uid://b7ylst0ou5av3"
+path="res://.godot/imported/Antibodies.png-7631e40a0fb04a6b6d56b3b281a82344.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Assets/Antibodies/ANTIBODIES.png"
-dest_files=["res://.godot/imported/ANTIBODIES.png-fc494b52ae02021774a7e2e94fb794db.ctex"]
+source_file="res://Enemies/Assets/Antibodies/Antibodies.png"
+dest_files=["res://.godot/imported/Antibodies.png-7631e40a0fb04a6b6d56b3b281a82344.ctex"]
 
 [params]
 

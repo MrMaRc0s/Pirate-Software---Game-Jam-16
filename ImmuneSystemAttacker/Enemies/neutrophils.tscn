@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://g15hyy7fb2oe"]
 
-[ext_resource type="Script" path="res://Enemies/neutrophils.gd" id="1_6rke4"]
+[ext_resource type="Script" path="res://Enemies/scripts/neutrophils.gd" id="1_6rke4"]
 [ext_resource type="Texture2D" uid="uid://cqdpo5ik50cel" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfhb5"]

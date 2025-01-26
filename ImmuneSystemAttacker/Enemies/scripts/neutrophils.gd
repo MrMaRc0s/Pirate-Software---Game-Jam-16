@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
 
-@export var normalSpeed : int = 120
+@export var normalSpeed : int = 65
 var SPEED : int = normalSpeed
-@export var maxHealth : int = 30
+@export var maxHealth : int = 20
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
 var attackCooldown : bool = false
-@export var dmg : int = 33
+@export var dmg : int = 20
 @export var xpDrop : int = 300
 
 func _ready():

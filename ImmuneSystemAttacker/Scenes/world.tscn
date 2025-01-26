@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://dij8dw6m3qkwh"]
+[gd_scene load_steps=9 format=4 uid="uid://dij8dw6m3qkwh"]
 
 [ext_resource type="PackedScene" uid="uid://bscb38e22u553" path="res://Scenes/player.tscn" id="2_0d7ca"]
 [ext_resource type="PackedScene" uid="uid://tjmdxykep5tv" path="res://Scenes/macrophage_spawner.tscn" id="2_1m8kd"]
 [ext_resource type="PackedScene" uid="uid://b8uixtgstm436" path="res://Scenes/neutrophils_spawner.tscn" id="2_6crgp"]
 [ext_resource type="PackedScene" uid="uid://bfee4nxn6fo15" path="res://Scenes/natural_killer_cell_spawner.tscn" id="2_h306n"]
+[ext_resource type="PackedScene" uid="uid://cwg1qlu07jlk3" path="res://Enemies/antibodies.tscn" id="2_qah6d"]
 [ext_resource type="Texture2D" uid="uid://dj7uhxvdheald" path="res://Tileset/Red tiles.jpg" id="2_tm8ol"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va7no"]
@@ -245,6 +246,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAI
 tile_set = SubResource("TileSet_g6e00")
 
 [node name="NeutrophilsSpawner" parent="TileMapLayer" instance=ExtResource("2_6crgp")]
+
+[node name="Antibodies" parent="TileMapLayer/NeutrophilsSpawner" instance=ExtResource("2_qah6d")]
+position = Vector2(632, 414)
 
 [node name="NaturalKillCellSpawner" parent="TileMapLayer" instance=ExtResource("2_h306n")]
 
