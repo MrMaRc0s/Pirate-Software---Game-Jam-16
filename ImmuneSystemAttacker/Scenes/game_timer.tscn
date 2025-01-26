@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4nm6dwonnkmg"]
+
+[sub_resource type="GDScript" id="GDScript_n4aml"]
+script/source = "extends Node
+class_name GameTimer
+
+var time : float = 0.0
+var stop : bool = false
+
+func _process(delta: float) -> void:
+	if stop:
+		return
+	time +=delta
+	
+"
+
+[node name="GameTimer" type="Node" groups=["timer"]]
+script = SubResource("GDScript_n4aml")

@@ -39,7 +39,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lowsu"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b243w"]
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
 radius = 33.1361
@@ -55,9 +56,10 @@ frame_progress = 0.934514
 [node name="HitBox" type="CollisionShape2D" parent="."]
 light_mask = 2
 visibility_layer = 2
-shape = SubResource("RectangleShape2D_lowsu")
+shape = SubResource("CircleShape2D_b243w")
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")

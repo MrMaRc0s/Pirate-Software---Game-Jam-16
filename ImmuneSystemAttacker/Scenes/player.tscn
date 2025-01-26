@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bscb38e22u553"]
+[gd_scene load_steps=7 format=3 uid="uid://bscb38e22u553"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_7u2xi"]
 [ext_resource type="Texture2D" uid="uid://dtuoejjw1xqmo" path="res://PlayerModel/Player.png" id="3_1sjjo"]
+[ext_resource type="PackedScene" uid="uid://b8m8bsups7app" path="res://Scenes/hud.tscn" id="3_clvmp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ucdao"]
 animations = [{
@@ -14,7 +15,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq8xq"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_vsaug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6s8jg"]
 radius = 36.0
@@ -27,7 +28,7 @@ sprite_frames = SubResource("SpriteFrames_ucdao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_tq8xq")
+shape = SubResource("CircleShape2D_vsaug")
 
 [node name="PlayerRange" type="Area2D" parent="."]
 
@@ -45,6 +46,10 @@ limit_right = 1150
 limit_bottom = 700
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="HUD" parent="Camera2D/CanvasLayer" instance=ExtResource("3_clvmp")]
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(0, 0.647059, 0.345098, 0.984314)
@@ -66,7 +71,11 @@ offset_right = 39.0
 offset_bottom = 25.0
 show_percentage = false
 
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="body_entered" from="PlayerRange" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerRange" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

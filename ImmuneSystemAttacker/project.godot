@@ -23,6 +23,10 @@ Global="*res://script/global.gd"
 
 window/stretch/scale=0.5
 
+[global_group]
+
+timer=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

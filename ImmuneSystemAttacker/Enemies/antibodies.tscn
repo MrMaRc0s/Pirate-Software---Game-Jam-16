@@ -64,12 +64,12 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wjbuo"]
-radius = 8.31
-height = 29.12
+radius = 3.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3qmqa"]
 radius = 19.57
@@ -83,7 +83,7 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 frame_progress = 0.213069
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_wjbuo")
 
 [node name="AttackRange" type="Area2D" parent="."]

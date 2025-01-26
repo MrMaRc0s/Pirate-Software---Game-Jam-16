@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oalgo"]
-radius = 17.1172
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
 radius = 19.8494
@@ -63,6 +63,7 @@ frame_progress = 0.747101
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")

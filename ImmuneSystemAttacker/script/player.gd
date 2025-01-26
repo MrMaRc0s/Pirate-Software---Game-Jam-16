@@ -12,6 +12,7 @@ var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 @export var nextLvl: int = 500
 var level : int = 1
 var xp : int = 0
+@onready var damageTimer = $DamageTimer
 
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -77,6 +78,15 @@ func take_damage(amount: int):
 	print("Player took ", amount, " damage. Remaining health: ", health)
 	if health <= 0:
 		die()
+	else:
+		turn_red()
+
+func turn_red():
+	self.modulate = Color(1, 0.5, 0.5)
+	damageTimer.start(0.3)
+	
+func _on_damage_timer_timeout() -> void:
+	self.modulate = Color(1, 1, 1) 
 
 func _on_attack_cooldown_timeout() -> void:
 	attackCooldown = true
@@ -102,7 +112,7 @@ func giveXp(amount: int):
 	print("xp= ",xp)
 	if xp >=nextLvl:
 		level+=1
-		xp = nextLvl - xp
+		xp -= nextLvl
 		nextLvl+=200
 		print("Leveled up!!! ", level)
 

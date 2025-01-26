@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oalgo"]
-radius = 13.0384
+radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
 radius = 79.0253
@@ -60,9 +60,11 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 frame_progress = 0.228642
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
