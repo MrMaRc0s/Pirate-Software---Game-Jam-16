@@ -1,7 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://g15hyy7fb2oe"]
+[gd_scene load_steps=17 format=3 uid="uid://g15hyy7fb2oe"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/neutrophils.gd" id="1_6rke4"]
 [ext_resource type="Texture2D" uid="uid://cqdpo5ik50cel" path="res://Enemies/Assets/Neutrophils/Neutrophils.png" id="2_jmg64"]
+[ext_resource type="Texture2D" uid="uid://dl8odx2nj2xp4" path="res://Enemies/Assets/Neutrophils/NeutrophilsAttack.png" id="2_lhlra"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugpxm"]
+atlas = ExtResource("2_lhlra")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io73h"]
+atlas = ExtResource("2_lhlra")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvw80"]
+atlas = ExtResource("2_lhlra")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1khp6"]
+atlas = ExtResource("2_lhlra")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq8sy"]
+atlas = ExtResource("2_lhlra")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfhb5"]
 atlas = ExtResource("2_jmg64")
@@ -25,6 +46,26 @@ region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugpxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io73h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvw80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1khp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq8sy")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sfhb5")
@@ -57,7 +98,7 @@ script = ExtResource("1_6rke4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
-frame_progress = 0.228642
+animation = &"attack"
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -1)

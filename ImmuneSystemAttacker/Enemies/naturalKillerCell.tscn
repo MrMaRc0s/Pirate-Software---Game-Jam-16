@@ -1,7 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgp6gsowxrm0b"]
+[gd_scene load_steps=17 format=3 uid="uid://cgp6gsowxrm0b"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/natural_killer_cell.gd" id="1_gbspc"]
+[ext_resource type="Texture2D" uid="uid://yd7ae7bt311h" path="res://Enemies/Assets/NaturalKillerCell/NaturalKillerCellAttack.png" id="2_t3rc2"]
 [ext_resource type="Texture2D" uid="uid://dawpr5btbjnlf" path="res://Enemies/Assets/NaturalKillerCell/NATURAL KILLER CELLS.png" id="2_tgj28"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqpuq"]
+atlas = ExtResource("2_t3rc2")
+region = Rect2(0, 0, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emyto"]
+atlas = ExtResource("2_t3rc2")
+region = Rect2(52, 0, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5474"]
+atlas = ExtResource("2_t3rc2")
+region = Rect2(0, 52, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4rrv"]
+atlas = ExtResource("2_t3rc2")
+region = Rect2(52, 52, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_473ai"]
+atlas = ExtResource("2_t3rc2")
+region = Rect2(0, 104, 52, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfa2e"]
 atlas = ExtResource("2_tgj28")
@@ -25,6 +46,26 @@ region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqpuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emyto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5474")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4rrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_473ai")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kfa2e")
@@ -57,7 +98,7 @@ script = ExtResource("1_gbspc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
-frame_progress = 0.747101
+animation = &"Attack"
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oalgo")
@@ -67,9 +108,6 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
-
-[node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(0.886275, 0.00392157, 0.886275, 1)
@@ -81,4 +119,3 @@ show_percentage = false
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

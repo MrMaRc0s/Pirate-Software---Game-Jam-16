@@ -4,6 +4,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_ps0ea"]
 font_names = PackedStringArray("Sitka Display")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ieoks"]
 font = SubResource("SystemFont_ps0ea")

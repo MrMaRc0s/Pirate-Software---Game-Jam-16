@@ -49,6 +49,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		
 func attackPlayer():
 	if not attackCooldown and playerInRange:
+		$AnimatedSprite2D.play("attack")
 		player.take_damage(dmg)
 		attackCooldown = true
 		$AttackCooldown.start()

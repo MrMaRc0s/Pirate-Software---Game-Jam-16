@@ -82,11 +82,11 @@ func take_damage(amount: int):
 		turn_red()
 
 func turn_red():
-	self.modulate = Color(1, 0.5, 0.5)
+	$AnimatedSprite2D.modulate = Color(1, 0.5, 0.5)
 	damageTimer.start(0.3)
 	
 func _on_damage_timer_timeout() -> void:
-	self.modulate = Color(1, 1, 1) 
+	$AnimatedSprite2D.modulate = Color(1, 1, 1) 
 
 func _on_attack_cooldown_timeout() -> void:
 	attackCooldown = true
