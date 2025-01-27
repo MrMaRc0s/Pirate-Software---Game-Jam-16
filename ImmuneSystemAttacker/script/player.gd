@@ -16,6 +16,7 @@ var xp : int = 0
 
 func _ready():
 	$AnimatedSprite2D.play("default")
+	Global.LvlUp = nextLvl
 
 func _physics_process(delta):
 	updateHealthbar()
@@ -110,6 +111,8 @@ func updateXpbar():
 func giveXp(amount: int):
 	xp+=amount
 	print("xp= ",xp)
+	Global.XPbar = xp
+	Global.LvlUp = nextLvl
 	if xp >=nextLvl:
 		level+=1
 		xp -= nextLvl
