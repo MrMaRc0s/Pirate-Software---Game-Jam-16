@@ -58,7 +58,7 @@ func attackPlayer():
 
 func fire():
 	var bullet = projectile.instantiate()
-	bullet.pos = global_position
+	bullet.pos = global_position + Vector2(0, 8)
 	bullet.direction = (player.position - position).angle() 
 	get_parent().add_child(bullet)
 

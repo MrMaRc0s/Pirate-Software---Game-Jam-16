@@ -1,0 +1,14 @@
+res://Scenes/world.tscn
+res://Scenes/projectile.tscn
+res://Scenes/bullet.gd
+res://Scenes/Bullet.tscn
+res://Enemies/scripts/neutrophils.gd
+res://Enemies/neutrophils.tscn
+res://Scenes/player.tscn
+res://Enemies/naturalKillerCell.tscn
+res://Enemies/macrophage.tscn
+res://Enemies/antibodies.tscn
+res://Enemies/plasmaCell.tscn
+res://script/player.gd
+res://script/projectile.gd
+res://Enemies/scripts/natural_killer_cell.gd

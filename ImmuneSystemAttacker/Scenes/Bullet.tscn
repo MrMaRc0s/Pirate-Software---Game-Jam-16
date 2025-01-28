@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwkb8agy4syti"]
+
+[ext_resource type="Texture2D" uid="uid://da4glym8foplh" path="res://Enemies/Assets/Neutrophils/Projectile/Projectile.png" id="1_cj42u"]
+[ext_resource type="Script" path="res://Scenes/bullet.gd" id="1_eqjqu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4o7s"]
+atlas = ExtResource("1_cj42u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s754"]
+atlas = ExtResource("1_cj42u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbsw6"]
+atlas = ExtResource("1_cj42u")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8gsb"]
+atlas = ExtResource("1_cj42u")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3imv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4o7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s754")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbsw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8gsb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mhnup"]
+radius = 3.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_eqjqu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q3imv")
+frame = 1
+frame_progress = 0.723492
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+shape = SubResource("CircleShape2D_mhnup")

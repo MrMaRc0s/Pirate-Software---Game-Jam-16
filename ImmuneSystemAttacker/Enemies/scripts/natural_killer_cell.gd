@@ -37,6 +37,7 @@ func _physics_process(_delta):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	playerInRange = true
 	if body.has_method("player") and attacking==false:
+		$AttackRange/CollisionShape2D.visible = true
 		attacking = true
 		SPEED = 0
 		$AnimatedSprite2D.play("Attack")

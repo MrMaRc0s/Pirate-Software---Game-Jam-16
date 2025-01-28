@@ -94,6 +94,8 @@ radius = 3.16228
 radius = 79.0253
 
 [node name="Neutrophil" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_6rke4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -103,7 +105,6 @@ animation = &"attack"
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_oalgo")
-disabled = true
 
 [node name="AttackRange" type="Area2D" parent="."]
 visible = false
