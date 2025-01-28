@@ -131,7 +131,9 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 animation = &"attack"
 frame_progress = 0.710326
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="HitBox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_wjbuo")
 

@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
 
-@export var normalSpeed : int = 120
+@export var normalSpeed : int = 65
 var SPEED : int = normalSpeed
-@export var maxHealth : int = 30
+@export var maxHealth : int = 20
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
-@export var dmg : int = 33
-@export var xpDrop : int = 200
-var attacking : bool = false
+var attackCooldown : bool = false
+@export var dmg : int = 20
+@export var xpDrop : int = 300
 
 func _ready():
 	player = get_node("../../Player")
@@ -27,6 +27,7 @@ func enemy():
 
 func _physics_process(_delta):
 	updateHealthbar()
+	attackPlayer()
 	if Global.PlayerAlive:
 		$AnimatedSprite2D.flip_h = (player.position.x < position.x)
 		var direction = (player.position - position).normalized()
@@ -35,31 +36,37 @@ func _physics_process(_delta):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	playerInRange = true
-	if body.has_method("player") and attacking==false:
-		attacking = true
+	if body.has_method("player"):
 		SPEED = 0
-		$AnimatedSprite2D.play("Attack")
-		$Boom.start(1)
+		playerInRange = true
+		
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
+		SPEED = normalSpeed
 		playerInRange = false
+		$AnimatedSprite2D.play("default")
+		
+func attackPlayer():
+	if not attackCooldown and playerInRange:
+		$AnimatedSprite2D.play("attack")
+		player.take_damage(dmg)
+		attackCooldown = true
+		$AttackCooldown.start()
+	
 
 func die():
 	player.giveXp(xpDrop)
 	queue_free()
 	print("Enemy has been killed")
+
+
+func _on_attack_cooldown_timeout() -> void:
+	attackCooldown = false
 	
 func updateHealthbar():
 	var healthbar = $Healthbar
 	healthbar.max_value = maxHealth
 	healthbar.value = health
 	healthbar.visible = (health < maxHealth)
-
-
-func _on_boom_timeout() -> void:
-	if playerInRange:
-		player.take_damage(dmg)
-	queue_free()

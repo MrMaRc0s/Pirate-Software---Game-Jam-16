@@ -10,6 +10,7 @@ var playerInRange : bool = false
 var attackCooldown : bool = false
 @export var dmg : int = 20
 @export var xpDrop : int = 300
+const projectile = preload("res://Scenes/projectile.tscn")
 
 func _ready():
 	player = get_node("../../Player")
@@ -46,14 +47,21 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
 		SPEED = normalSpeed
 		playerInRange = false
+		$AnimatedSprite2D.play("default")
 		
 func attackPlayer():
 	if not attackCooldown and playerInRange:
 		$AnimatedSprite2D.play("attack")
-		player.take_damage(dmg)
+		fire()
 		attackCooldown = true
 		$AttackCooldown.start()
-	
+
+func fire():
+	var bullet = projectile.instantiate()
+	bullet.pos = global_position
+	bullet.direction = (player.position - position).angle() 
+	get_parent().add_child(bullet)
+
 
 func die():
 	player.giveXp(xpDrop)

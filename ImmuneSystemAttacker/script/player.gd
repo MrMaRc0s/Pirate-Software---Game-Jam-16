@@ -3,11 +3,11 @@ extends CharacterBody2D
 # Variables
 var enemiesInRange: Array[Node2D] = []
 @export var speed : int = 100
-@export var maxHealth : int = 100
+@export var maxHealth : int = 100000
 var face : bool = false
 var attackCooldown : bool = true
 var health : int = maxHealth
-@export var dmg : int = 15
+@export var dmg : int = 0
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 @export var nextLvl: int = 500
 var level : int = 1
@@ -16,7 +16,6 @@ var xp : int = 0
 
 func _ready():
 	$AnimatedSprite2D.play("default")
-	Global.LvlUp = nextLvl
 
 func _physics_process(delta):
 	updateHealthbar()
@@ -94,8 +93,8 @@ func _on_attack_cooldown_timeout() -> void:
 
 func die():
 	Global.PlayerAlive = false
+	get_tree().change_scene_to_file("res://Scenes/DeathScreen.tscn")
 	queue_free()
-	print("Player has been killed")
 
 func updateHealthbar():
 	var healthbar = $Healthbar
@@ -111,8 +110,6 @@ func updateXpbar():
 func giveXp(amount: int):
 	xp+=amount
 	print("xp= ",xp)
-	Global.XPbar = xp
-	Global.LvlUp = nextLvl
 	if xp >=nextLvl:
 		level+=1
 		xp -= nextLvl

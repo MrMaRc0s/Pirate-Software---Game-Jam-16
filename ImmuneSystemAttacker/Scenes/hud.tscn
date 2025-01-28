@@ -33,10 +33,3 @@ grow_horizontal = 2
 text = "00:00"
 label_settings = SubResource("LabelSettings_ieoks")
 horizontal_alignment = 1
-
-[node name="XpBar" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 51.0
-offset_top = 583.0
-offset_right = 1089.0
-offset_bottom = 610.0

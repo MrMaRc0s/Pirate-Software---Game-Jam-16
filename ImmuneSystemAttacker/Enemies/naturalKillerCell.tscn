@@ -104,7 +104,6 @@ animation = &"Attack"
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
@@ -117,5 +116,8 @@ offset_right = 31.0
 offset_bottom = 33.0
 show_percentage = false
 
+[node name="Boom" type="Timer" parent="."]
+
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Boom" to="." method="_on_boom_timeout"]

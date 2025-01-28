@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpgk8y23t5qai"]
+
+[ext_resource type="Script" path="res://script/projectile.gd" id="1_tj5fi"]
+[ext_resource type="Texture2D" uid="uid://da4glym8foplh" path="res://Enemies/Assets/Neutrophils/Projectile/Projectile.png" id="2_q6c0b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5n7t"]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2xp6"]
+atlas = ExtResource("2_q6c0b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78gfr"]
+atlas = ExtResource("2_q6c0b")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5yq6"]
+atlas = ExtResource("2_q6c0b")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyc6t"]
+atlas = ExtResource("2_q6c0b")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gcae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2xp6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78gfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5yq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyc6t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_tj5fi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p5n7t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -2)
+sprite_frames = SubResource("SpriteFrames_1gcae")
+frame_progress = 0.375796

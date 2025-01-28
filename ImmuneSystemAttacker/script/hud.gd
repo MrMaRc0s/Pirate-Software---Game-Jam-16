@@ -9,18 +9,13 @@ func _process(delta: float) -> void:
 		return
 	time += delta
 	updateGameTimer()  # Call updateGameTimer to update the label
-	updateXpBar()
 
 func timeToString() -> String:
 	var sec = fmod(time, 60)
-	var min = int(time / 60)  # Convert to integer for formatting
+	var minn = int(time / 60)
 	var formatString = "%02d : %02d"
-	var actualString = formatString % [min, sec]
+	var actualString = formatString % [minn, sec]
 	return actualString
 
 func updateGameTimer() -> void:
 	$Timer.text = timeToString()
-	
-func updateXpBar():
-	$XpBar.value = Global.XPbar
-	$XpBar.max_value = Global.LvlUp
