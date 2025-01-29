@@ -22,8 +22,8 @@ height = 29.2501
 radius = 32.5576
 
 [node name="PlasmaCell" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_3dmky")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

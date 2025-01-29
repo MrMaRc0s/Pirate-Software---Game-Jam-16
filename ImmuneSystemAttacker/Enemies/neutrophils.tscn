@@ -94,8 +94,8 @@ radius = 3.16228
 radius = 79.0253
 
 [node name="Neutrophil" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_6rke4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

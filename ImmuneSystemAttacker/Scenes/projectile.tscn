@@ -39,11 +39,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [node name="Projectile" type="CharacterBody2D"]
-collision_layer = 8
+collision_layer = 2
 collision_mask = 25
 script = ExtResource("1_tj5fi")
 
@@ -57,7 +57,7 @@ shape = SubResource("CircleShape2D_p5n7t")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -2)
 sprite_frames = SubResource("SpriteFrames_1gcae")
-frame_progress = 0.375796
+frame_progress = 0.652789
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,11 +1,18 @@
 extends Node2D
 
-var enemy = preload("res://Enemies/naturalKillerCell.tscn")
+var macrophage = preload("res://Enemies/macrophage.tscn")
+var neutrophils = preload("res://Enemies/neutrophils.tscn")
+
+
 
 func spawn(pos: Vector2) -> void:
+	randomize()
+	var enemies = [macrophage, neutrophils]
+	var enemy = enemies[randi()% enemies.size()]
 	var instance = enemy.instantiate()
 	instance.position = pos
 	add_child(instance)
 
 func _on_timer_timeout() -> void:
-	spawn(Vector2(10, 700))
+	if Global.neutrophils:
+		spawn(Vector2(randf_range(-200, 1500), randf_range(-200, 1500)))

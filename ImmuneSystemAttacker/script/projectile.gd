@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : int = 200  # Bullet speed
+@export var speed : int = 300  # Bullet speed
 var direction : float  # Direction to move
 var pos : Vector2  # Starting position
 

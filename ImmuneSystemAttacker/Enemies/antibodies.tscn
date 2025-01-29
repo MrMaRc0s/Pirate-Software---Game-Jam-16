@@ -124,8 +124,8 @@ radius = 19.57
 height = 58.28
 
 [node name="Antibodies" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_whevs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

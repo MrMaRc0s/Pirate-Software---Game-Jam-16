@@ -7,15 +7,16 @@ var enemiesInRange: Array[Node2D] = []
 var face : bool = false
 var attackCooldown : bool = true
 var health : int = maxHealth
-@export var dmg : int = 0
+@export var dmg : int = 10
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 @export var nextLvl: int = 500
 var level : int = 1
 var xp : int = 0
 @onready var damageTimer = $DamageTimer
+var walking : bool = false
 
 func _ready():
-	$AnimatedSprite2D.play("default")
+	play_anim("hahaha")
 
 func _physics_process(delta):
 	updateHealthbar()
@@ -23,6 +24,16 @@ func _physics_process(delta):
 	player_movement(delta)
 	move_and_slide() 
 	AttackEnemy()
+	if velocity != Vector2(0,0):
+		startWalking()
+	else:
+		play_anim("hahaha")
+		walking = false
+		
+func startWalking():
+	if walking == false:
+		play_anim("Walking")
+		#$StartWalking.start(1)
 
 func player_movement(_delta):
 	# Reset movement velocity
@@ -31,10 +42,10 @@ func player_movement(_delta):
 	# Check for movement inputs and set velocity accordingly
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += speed
-		face = false  # Update facing direction
+		face = true
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x -= speed
-		face = true
+		face = false
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += speed
 	if Input.is_action_pressed("ui_up"):
@@ -127,3 +138,9 @@ func _on_health_regen_timeout() -> void:
 		$HealthRegen.stop()
 func player():
 	pass
+
+
+func _on_start_walking_timeout() -> void:
+	$StartWalking.stop()
+	walking = true
+	play_anim("Walking")

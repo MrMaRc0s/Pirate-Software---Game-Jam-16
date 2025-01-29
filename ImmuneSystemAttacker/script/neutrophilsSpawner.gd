@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy = preload("res://Enemies/neutrophils.tscn")
+var enemy = preload("res://Enemies/macrophage.tscn")
 
 func spawn(pos: Vector2) -> void:
 	var instance = enemy.instantiate()
@@ -8,4 +8,4 @@ func spawn(pos: Vector2) -> void:
 	add_child(instance)
 
 func _on_timer_timeout() -> void:
-	spawn(Vector2(1100, 0))
+	spawn(Vector2(randf_range(-200, 1500), randf_range(-200, 1500)))
