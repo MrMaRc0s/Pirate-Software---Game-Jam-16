@@ -1,7 +1,9 @@
-Button
-VBoxContainer
-HBoxContainer
 Label
-Control
+VBoxContainer
 MarginContainer
+TabBar
+TabContainer
+Button
+HBoxContainer
+Control
 TextureRect
