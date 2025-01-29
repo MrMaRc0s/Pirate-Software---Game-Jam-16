@@ -1,0 +1,63 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1738177402
+background.jpg::CompressedTexture2D::1916190655872838441::1738174703::1738176218::1::::<><>::
+icon.svg::CompressedTexture2D::8227142354626702098::1737884951::1738085389::1::::<><>::
+pause_menu.gdshader::Shader::-1::1738177402::0::1::::<><>::
+::res://Enemies/::1738171393
+antibodies.tscn::PackedScene::6330990018293634692::1738165598::0::1::::<><>::res://Enemies/scripts/antibodies.gd<>uid://b7ylst0ou5av3::::res://Enemies/Assets/Antibodies/Antibodies.png<>uid://bpwofbp8jtdjq::::res://Enemies/Assets/Antibodies/AntibodiesAttack.png
+macrophage.tscn::PackedScene::7433175192561085197::1738165875::0::1::::<><>::res://Enemies/scripts/macrophage.gd<>uid://cpxxy57fxy4xt::::res://Enemies/Assets/Macrophage/Macrophage.png
+naturalKillerCell.tscn::PackedScene::5226834005143045179::1738165875::0::1::::<><>::res://Enemies/scripts/natural_killer_cell.gd<>uid://yd7ae7bt311h::::res://Enemies/Assets/NaturalKillerCell/NaturalKillerCellAttack.png<>uid://dawpr5btbjnlf::::res://Enemies/Assets/NaturalKillerCell/NATURAL KILLER CELLS.png
+neutrophils.tscn::PackedScene::476642192870472356::1738165875::0::1::::<><>::res://Enemies/scripts/neutrophils.gd<>uid://cqdpo5ik50cel::::res://Enemies/Assets/Neutrophils/Neutrophils.png<>uid://dl8odx2nj2xp4::::res://Enemies/Assets/Neutrophils/NeutrophilsAttack.png
+plasmaCell.tscn::PackedScene::736432287692115249::1738165598::0::1::::<><>::res://Enemies/scripts/macrophage.gd<>uid://crhpbdqtk5lm3::::res://Enemies/Assets/PlasmaCell/PlasmaCell.png
+::res://Enemies/Assets/::1738085389
+Imune system.png::CompressedTexture2D::924180636691787256::1737884951::1738085389::1::::<><>::
+::res://Enemies/Assets/Antibodies/::1738085389
+Antibodies.png::CompressedTexture2D::4682709814646056854::1738085283::1738085389::1::::<><>::
+AntibodiesAttack.png::CompressedTexture2D::3485528692928719830::1738085283::1738085389::1::::<><>::
+::res://Enemies/Assets/Macrophage/::1738085389
+Macrophage.png::CompressedTexture2D::5874595685580544997::1737884951::1738085389::1::::<><>::
+::res://Enemies/Assets/NaturalKillerCell/::1738085389
+NATURAL KILLER CELLS.png::CompressedTexture2D::7205621053166785703::1737884951::1738085389::1::::<><>::
+NaturalKillerCellAttack.png::CompressedTexture2D::1692668583942582547::1738085283::1738085389::1::::<><>::
+::res://Enemies/Assets/Neutrophils/::1738085389
+Neutrophils.png::CompressedTexture2D::5902993343417434115::1737884951::1738085389::1::::<><>::
+NeutrophilsAttack.png::CompressedTexture2D::8000320442612625599::1738085283::1738085389::1::::<><>::
+::res://Enemies/Assets/Neutrophils/Projectile/::1738085389
+Projectile.png::CompressedTexture2D::7219514232241264409::1738085283::1738085389::1::::<><>::
+::res://Enemies/Assets/PlasmaCell/::1738085389
+PlasmaCell.png::CompressedTexture2D::5981415077361322704::1737884951::1738085389::1::::<><>::
+::res://Enemies/scripts/::1738171417
+antibodies.gd::GDScript::-1::1738085283::0::1::::<>CharacterBody2D<>::
+macrophage.gd::GDScript::-1::1738165598::0::1::::<>CharacterBody2D<>::
+natural_killer_cell.gd::GDScript::-1::1738165598::0::1::::<>CharacterBody2D<>::
+neutrophils.gd::GDScript::-1::1738165598::0::1::::<>CharacterBody2D<>::
+::res://PlayerModel/::1738165621
+HAHAHA.png::CompressedTexture2D::9017584769592227273::1738165598::1738165621::1::::<><>::
+idle.png::CompressedTexture2D::6894934557784143325::1738165598::1738165621::1::::<><>::
+Starting.png::CompressedTexture2D::3786305571601746996::1738165598::1738165621::1::::<><>::
+::res://Scenes/::1738177472
+Bullet.tscn::PackedScene::6337759363553906638::1738165598::0::1::::<><>::uid://da4glym8foplh::::res://Enemies/Assets/Neutrophils/Projectile/Projectile.png<>res://Scenes/bullet.gd
+DeathScreen.tscn::PackedScene::3952876523876670667::1738085283::0::1::::<><>::
+game_timer.tscn::PackedScene::6835938899425906494::1738085283::0::1::::<><>::
+hud.tscn::PackedScene::4729431480375319821::1738085283::0::1::::<><>::res://script/hud.gd
+macrophage_spawner.tscn::PackedScene::1352902635776749323::1738165598::0::1::::<><>::res://script/naturalKillCellSpawner.gd
+natural_killer_cell_spawner.tscn::PackedScene::2745917787860163906::1738165598::0::1::::<><>::res://script/macrophageSpawner.gd
+neutrophils_spawner.tscn::PackedScene::4744467896087522971::1738165598::0::1::::<><>::res://script/neutrophilsSpawner.gd
+pause_menu.tscn::PackedScene::687870934944127048::1738170130::0::1::::<><>::res://script/pause_menu.gd<>res://pause_menu.gdshader
+player.tscn::PackedScene::3654061084621338816::1738165875::0::1::::<><>::res://script/player.gd<>uid://bt7d5t6avaqkq::::res://PlayerModel/Starting.png<>uid://b8m8bsups7app::::res://Scenes/hud.tscn<>uid://d1qgklbotisl2::::res://PlayerModel/HAHAHA.png<>uid://c5h7tg6ceoxrp::::res://PlayerModel/idle.png
+projectile.tscn::PackedScene::3452307009483374248::1738165598::0::1::::<><>::res://script/projectile.gd<>uid://da4glym8foplh::::res://Enemies/Assets/Neutrophils/Projectile/Projectile.png
+main_menu.tscn::PackedScene::6611827103950253317::1738177402::0::1::::<><>::uid://2khm6pfer12d::::res://background.jpg
+main_menu.gd::GDScript::-1::1738177472::0::1::::<>Control<>::
+world.tscn::PackedScene::7741362422099031963::1738177402::0::1::::<><>::res://script/world.gd<>uid://bscb38e22u553::::res://Scenes/player.tscn<>uid://tjmdxykep5tv::::res://Scenes/macrophage_spawner.tscn<>uid://b8uixtgstm436::::res://Scenes/neutrophils_spawner.tscn<>uid://bfee4nxn6fo15::::res://Scenes/natural_killer_cell_spawner.tscn<>uid://dj7uhxvdheald::::res://Tileset/Red tiles.jpg<>uid://j2hesw34hoea::::res://Scenes/pause_menu.tscn
+::res://script/::1738174400
+global.gd::GDScript::-1::1738171720::0::1::::<>Node<>::
+hud.gd::GDScript::-1::1738165598::0::1::::HUD<>Control<>::
+macrophageSpawner.gd::GDScript::-1::1738165598::0::1::::<>Node2D<>::
+naturalKillCellSpawner.gd::GDScript::-1::1738165598::0::1::::<>Node2D<>::
+neutrophilsSpawner.gd::GDScript::-1::1738165598::0::1::::<>Node2D<>::
+pause_menu.gd::GDScript::-1::1738165598::0::1::::<>Control<>::
+player.gd::GDScript::-1::1738165598::0::1::::<>CharacterBody2D<>::
+projectile.gd::GDScript::-1::1738165598::0::1::::<>CharacterBody2D<>::
+world.gd::GDScript::-1::1738165598::0::1::::<>Node2D<>::
+::res://Tileset/::1738085389
+Red tiles.jpg::CompressedTexture2D::7858249812987935273::1737884951::1738085389::1::::<><>::

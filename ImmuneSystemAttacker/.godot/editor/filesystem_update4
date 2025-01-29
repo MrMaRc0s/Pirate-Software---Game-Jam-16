@@ -1,0 +1,4 @@
+res://pause_menu.gdshader
+res://Scenes/main_menu.tscn
+res://Scenes/world.tscn
+res://script/main_menu.gd
