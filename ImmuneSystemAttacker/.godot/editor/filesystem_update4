@@ -1,0 +1,8 @@
+res://Scenes/main_menu.tscn
+res://default_bus_layout.tres
+res://Scenes/audio_slider_settings.tscn
+res://script/audio_slider_settings.gd
+res://Scenes/settings_tab_container.tscn
+res://script/settings_tab_container.gd
+res://Scenes/options_menu.tscn
+res://options_menu.gd
