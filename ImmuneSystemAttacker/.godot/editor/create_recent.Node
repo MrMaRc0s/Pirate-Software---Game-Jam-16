@@ -1,4 +1,6 @@
+Timer
 Label
+RichTextLabel
 VBoxContainer
 MarginContainer
 TabBar

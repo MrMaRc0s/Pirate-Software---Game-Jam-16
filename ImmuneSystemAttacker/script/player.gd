@@ -7,7 +7,7 @@ var enemiesInRange: Array[Node2D] = []
 var face : bool = false
 var attackCooldown : bool = true
 var health : int = maxHealth
-@export var dmg : int = 10
+@export var dmg : int = 30
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 @export var nextLvl: int = 500
 var level : int = 1
@@ -17,6 +17,7 @@ var walking : bool = false
 
 func _ready():
 	play_anim("hahaha")
+	$DisplayXpGain.text = ""
 
 func _physics_process(delta):
 	updateHealthbar()
@@ -119,6 +120,8 @@ func updateXpbar():
 	xpbar.value = xp
 
 func giveXp(amount: int):
+	$Timer.start(0.4)
+	$DisplayXpGain.text = "+"+str(amount)+"XP"
 	xp+=amount
 	print("xp= ",xp)
 	if xp >=nextLvl:
@@ -144,3 +147,7 @@ func _on_start_walking_timeout() -> void:
 	$StartWalking.stop()
 	walking = true
 	play_anim("Walking")
+	
+
+func _on_timer_timeout() -> void:
+	$DisplayXpGain.text = ""

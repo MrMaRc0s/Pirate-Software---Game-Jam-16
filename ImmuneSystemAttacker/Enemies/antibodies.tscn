@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cwg1qlu07jlk3"]
+[gd_scene load_steps=23 format=3 uid="uid://cwg1qlu07jlk3"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/antibodies.gd" id="1_whevs"]
 [ext_resource type="Texture2D" uid="uid://b7ylst0ou5av3" path="res://Enemies/Assets/Antibodies/Antibodies.png" id="2_72pd1"]
@@ -123,6 +123,18 @@ height = 6.0
 radius = 19.57
 height = 58.28
 
+[sub_resource type="SystemFont" id="SystemFont_igdko"]
+font_names = PackedStringArray("Consolas")
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ac3f"]
+line_spacing = 2.0
+font = SubResource("SystemFont_igdko")
+font_size = 8
+outline_size = 1
+outline_color = Color(0.530242, 0, 0.0861157, 1)
+shadow_size = 2
+
 [node name="Antibodies" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
@@ -149,12 +161,25 @@ wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(0.886275, 0.00392157, 0.886275, 1)
-offset_left = -32.0
-offset_top = 19.0
-offset_right = 32.0
-offset_bottom = 26.0
+offset_left = -16.0
+offset_top = 23.0
+offset_right = 16.0
+offset_bottom = 29.0
 show_percentage = false
+
+[node name="DisplayDmg" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 7.0
+offset_right = 26.0
+offset_bottom = 30.0
+text = "30"
+label_settings = SubResource("LabelSettings_3ac3f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tookDamage" type="Timer" parent="."]
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="tookDamage" to="." method="_on_took_damage_timeout"]

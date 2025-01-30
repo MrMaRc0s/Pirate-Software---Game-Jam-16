@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgp6gsowxrm0b"]
+[gd_scene load_steps=19 format=3 uid="uid://cgp6gsowxrm0b"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/natural_killer_cell.gd" id="1_gbspc"]
 [ext_resource type="Texture2D" uid="uid://yd7ae7bt311h" path="res://Enemies/Assets/NaturalKillerCell/NaturalKillerCellAttack.png" id="2_t3rc2"]
@@ -93,8 +93,20 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
 radius = 19.8494
 
+[sub_resource type="SystemFont" id="SystemFont_xsl75"]
+font_names = PackedStringArray("Consolas")
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_78yye"]
+line_spacing = 2.0
+font = SubResource("SystemFont_xsl75")
+font_size = 8
+outline_size = 1
+outline_color = Color(0.530242, 0, 0.0861157, 1)
+shadow_size = 2
+
 [node name="NaturalKillerCell" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 64
 collision_mask = 4
 script = ExtResource("1_gbspc")
 
@@ -103,23 +115,38 @@ sprite_frames = SubResource("SpriteFrames_y8p3g")
 animation = &"Attack"
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
 
+[node name="Boom" type="Timer" parent="."]
+
+[node name="tookDamage" type="Timer" parent="."]
+
+[node name="DisplayDmg" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 25.0
+text = "30"
+label_settings = SubResource("LabelSettings_78yye")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(0.886275, 0.00392157, 0.886275, 1)
-offset_left = -30.0
-offset_top = 25.0
-offset_right = 31.0
-offset_bottom = 33.0
+offset_left = -16.0
+offset_top = 17.0
+offset_right = 16.0
+offset_bottom = 23.0
 show_percentage = false
-
-[node name="Boom" type="Timer" parent="."]
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Boom" to="." method="_on_boom_timeout"]
+[connection signal="timeout" from="tookDamage" to="." method="_on_took_damage_timeout"]

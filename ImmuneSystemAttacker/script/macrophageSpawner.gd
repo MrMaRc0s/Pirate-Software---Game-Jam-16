@@ -3,7 +3,9 @@ extends Node2D
 var neutrophils = preload("res://Enemies/neutrophils.tscn")
 var naturalKillerCell = preload("res://Enemies/naturalKillerCell.tscn")
 
-
+func _process(delta: float) -> void:
+	if Global.boss:
+		queue_free()
 
 func spawn(pos: Vector2) -> void:
 	randomize()
@@ -12,6 +14,7 @@ func spawn(pos: Vector2) -> void:
 	var instance = enemy.instantiate()
 	instance.position = pos
 	add_child(instance)
+
 
 func _on_timer_timeout() -> void:
 	if Global.naturalKillerCell:

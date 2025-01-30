@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd5xkrxqocfcf"]
+[gd_scene load_steps=12 format=3 uid="uid://dd5xkrxqocfcf"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_5upri"]
 [ext_resource type="Texture2D" uid="uid://cpxxy57fxy4xt" path="res://Enemies/Assets/Macrophage/Macrophage.png" id="2_ugr8u"]
@@ -45,8 +45,20 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
 radius = 33.1361
 
+[sub_resource type="SystemFont" id="SystemFont_sde4m"]
+font_names = PackedStringArray("Consolas")
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmf0r"]
+line_spacing = 2.0
+font = SubResource("SystemFont_sde4m")
+font_size = 8
+outline_size = 1
+outline_color = Color(0.530242, 0, 0.0861157, 1)
+shadow_size = 2
+
 [node name="Macrophage" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 128
 collision_mask = 4
 script = ExtResource("1_5upri")
 
@@ -77,6 +89,19 @@ offset_right = 16.0
 offset_bottom = 23.0
 show_percentage = false
 
+[node name="DisplayDmg" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 32.0
+offset_bottom = 26.0
+text = "30"
+label_settings = SubResource("LabelSettings_cmf0r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="tookDamage" type="Timer" parent="."]
+
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="tookDamage" to="." method="_on_took_damage_timeout"]

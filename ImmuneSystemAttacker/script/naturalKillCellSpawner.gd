@@ -3,7 +3,9 @@ extends Node2D
 var macrophage = preload("res://Enemies/macrophage.tscn")
 var neutrophils = preload("res://Enemies/neutrophils.tscn")
 
-
+func _process(delta: float) -> void:
+	if Global.boss:
+		queue_free()
 
 func spawn(pos: Vector2) -> void:
 	randomize()

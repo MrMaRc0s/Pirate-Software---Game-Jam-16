@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bscb38e22u553"]
+[gd_scene load_steps=42 format=3 uid="uid://bscb38e22u553"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_7u2xi"]
 [ext_resource type="Texture2D" uid="uid://bt7d5t6avaqkq" path="res://PlayerModel/Starting.png" id="2_njl3r"]
@@ -251,6 +251,18 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6s8jg"]
 radius = 36.0
 
+[sub_resource type="SystemFont" id="SystemFont_drelp"]
+font_names = PackedStringArray("Consolas")
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftx6i"]
+line_spacing = 2.0
+font = SubResource("SystemFont_drelp")
+font_size = 8
+outline_size = 1
+outline_color = Color(0.530242, 0, 0.0861157, 1)
+shadow_size = 2
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 8
 script = ExtResource("1_7u2xi")
@@ -265,7 +277,7 @@ position = Vector2(1, 4)
 shape = SubResource("CapsuleShape2D_tj5jp")
 
 [node name="PlayerRange" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 196
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRange"]
 scale = Vector2(6, 6)
@@ -311,9 +323,22 @@ wait_time = 0.3
 
 [node name="StartWalking" type="Timer" parent="."]
 
+[node name="DisplayXpGain" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 43.0
+offset_bottom = 37.0
+text = "30"
+label_settings = SubResource("LabelSettings_ftx6i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="PlayerRange" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerRange" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="StartWalking" to="." method="_on_start_walking_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

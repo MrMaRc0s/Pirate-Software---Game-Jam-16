@@ -14,12 +14,18 @@ var attackCooldown : bool = false
 func _ready():
 	player = get_node("../../Player")
 	$AnimatedSprite2D.play("default")
+	$DisplayDmg.text = ""
 
 func takeDmg(amount: int):
 	health -= amount
+	$DisplayDmg.text = "-"+str(amount)
+	turn_red()
 	if health <= 0:
 		die()
-	print("enemy took ", amount, " damage. Remaining health: ", health)
+
+func turn_red():
+	$AnimatedSprite2D.modulate = Color(1, 0.5, 0.5)
+	$tookDamage.start(0.3)
 
 func enemy():
 	pass
@@ -57,7 +63,6 @@ func attackPlayer():
 func die():
 	player.giveXp(xpDrop)
 	queue_free()
-	print("Enemy has been killed")
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -68,3 +73,8 @@ func updateHealthbar():
 	healthbar.max_value = maxHealth
 	healthbar.value = health
 	healthbar.visible = (health < maxHealth)
+
+
+func _on_took_damage_timeout() -> void:
+	$DisplayDmg.text = ""
+	$AnimatedSprite2D.modulate = Color(1, 1, 1)

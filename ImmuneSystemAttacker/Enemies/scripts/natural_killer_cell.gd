@@ -14,12 +14,18 @@ var attacking : bool = false
 func _ready():
 	player = get_node("../../Player")
 	$AnimatedSprite2D.play("default")
+	$DisplayDmg.text = ""
 
 func takeDmg(amount: int):
 	health -= amount
+	$DisplayDmg.text = "-"+str(amount)
+	turn_red()
 	if health <= 0:
 		die()
-	print("enemy took ", amount, " damage. Remaining health: ", health)
+
+func turn_red():
+	$AnimatedSprite2D.modulate = Color(1, 0.5, 0.5)
+	$tookDamage.start(0.3)
 
 func enemy():
 	pass
@@ -51,7 +57,6 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func die():
 	player.giveXp(xpDrop)
 	queue_free()
-	print("Enemy has been killed")
 	
 func updateHealthbar():
 	var healthbar = $Healthbar
@@ -64,3 +69,8 @@ func _on_boom_timeout() -> void:
 	if playerInRange:
 		player.take_damage(dmg)
 	queue_free()
+
+
+func _on_took_damage_timeout() -> void:
+	$DisplayDmg.text = ""
+	$AnimatedSprite2D.modulate = Color(1, 1, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dij8dw6m3qkwh"]
+[gd_scene load_steps=11 format=4 uid="uid://dij8dw6m3qkwh"]
 
 [ext_resource type="Script" path="res://script/world.gd" id="1_xaras"]
 [ext_resource type="PackedScene" uid="uid://bscb38e22u553" path="res://Scenes/player.tscn" id="2_0d7ca"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfee4nxn6fo15" path="res://Scenes/natural_killer_cell_spawner.tscn" id="2_h306n"]
 [ext_resource type="Texture2D" uid="uid://dj7uhxvdheald" path="res://Tileset/Red tiles.jpg" id="2_tm8ol"]
 [ext_resource type="PackedScene" uid="uid://j2hesw34hoea" path="res://Scenes/pause_menu.tscn" id="6_tqoyh"]
+[ext_resource type="PackedScene" uid="uid://ctqe6qudxo8f0" path="res://Scenes/kamikaziSpawner.tscn" id="6_wv62e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va7no"]
 texture = ExtResource("2_tm8ol")
@@ -253,7 +254,9 @@ tile_set = SubResource("TileSet_g6e00")
 
 [node name="MacrophageSpawner" parent="TileMapLayer" instance=ExtResource("2_1m8kd")]
 
-[node name="Player" parent="TileMapLayer" instance=ExtResource("2_0d7ca")]
+[node name="KamikaziSpawner" parent="TileMapLayer" instance=ExtResource("6_wv62e")]
+
+[node name="Player" parent="TileMapLayer" groups=["player"] instance=ExtResource("2_0d7ca")]
 position = Vector2(751, 411)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["walls"]]

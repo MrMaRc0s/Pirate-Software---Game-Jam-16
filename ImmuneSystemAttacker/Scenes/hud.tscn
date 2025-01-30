@@ -33,3 +33,20 @@ grow_horizontal = 2
 text = "00:00"
 label_settings = SubResource("LabelSettings_ieoks")
 horizontal_alignment = 1
+
+[node name="BossFightText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -172.0
+offset_top = 129.0
+offset_right = 176.0
+offset_bottom = 250.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_ieoks")
+horizontal_alignment = 1
+
+[node name="BossTextTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BossTextTimer" to="." method="_on_boss_text_timer_timeout"]

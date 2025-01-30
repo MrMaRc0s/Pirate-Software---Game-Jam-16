@@ -2,6 +2,10 @@ extends Node2D
 
 var enemy = preload("res://Enemies/macrophage.tscn")
 
+func _process(delta: float) -> void:
+	if Global.boss:
+		queue_free()
+
 func spawn(pos: Vector2) -> void:
 	var instance = enemy.instantiate()
 	instance.position = pos
