@@ -91,10 +91,11 @@ animations = [{
 radius = 3.16228
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
-radius = 79.0253
+radius = 199.161
 
 [sub_resource type="SystemFont" id="SystemFont_exb2r"]
 font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_076gm"]
@@ -119,7 +120,6 @@ position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
@@ -149,6 +149,8 @@ vertical_alignment = 1
 
 [node name="tookDamage" type="Timer" parent="."]
 
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

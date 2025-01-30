@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://script/projectile.gd" id="1_tj5fi"]
 [ext_resource type="Texture2D" uid="uid://da4glym8foplh" path="res://Enemies/Assets/Neutrophils/Projectile/Projectile.png" id="2_q6c0b"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p5n7t"]
-radius = 3.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2xp6"]
 atlas = ExtResource("2_q6c0b")
 region = Rect2(0, 0, 32, 32)
@@ -42,10 +39,18 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_p5n7t"]
+radius = 3.0
+
 [node name="Projectile" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 25
 script = ExtResource("1_tj5fi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -2)
+sprite_frames = SubResource("SpriteFrames_1gcae")
+frame_progress = 0.652789
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8
@@ -53,11 +58,6 @@ collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_p5n7t")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, -2)
-sprite_frames = SubResource("SpriteFrames_1gcae")
-frame_progress = 0.652789
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

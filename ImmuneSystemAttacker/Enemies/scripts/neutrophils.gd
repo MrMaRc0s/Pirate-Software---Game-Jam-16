@@ -56,16 +56,14 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		$AnimatedSprite2D.play("default")
 		
 func attackPlayer():
-	if not attackCooldown and playerInRange:
+	if playerInRange:
 		$AnimatedSprite2D.play("attack")
-		fire()
-		attackCooldown = true
-		$AttackCooldown.start()
 
 func fire():
 	var bullet = projectile.instantiate()
 	bullet.pos = global_position + Vector2(0, 8)
 	bullet.direction = (player.position - position).angle() 
+	bullet.scale = Vector2(2, 2)
 	get_parent().add_child(bullet)
 
 
@@ -75,7 +73,7 @@ func die():
 
 
 func _on_attack_cooldown_timeout() -> void:
-	attackCooldown = false
+	pass
 	
 func updateHealthbar():
 	var healthbar = $Healthbar
@@ -87,3 +85,8 @@ func updateHealthbar():
 func _on_took_damage_timeout() -> void:
 	$DisplayDmg.text = ""
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if $AnimatedSprite2D.animation == "attack" and $AnimatedSprite2D.frame == 3:
+		fire()

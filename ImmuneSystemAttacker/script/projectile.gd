@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-@export var speed : int = 300  # Bullet speed
+@export var speed : int = 200  # Bullet speed
 var direction : float  # Direction to move
 var pos : Vector2  # Starting position
 
 func _ready():
 	global_position = pos  # Set initial position
+	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta):
 	velocity = Vector2(speed, 0).rotated(direction)  # Move bullet forward

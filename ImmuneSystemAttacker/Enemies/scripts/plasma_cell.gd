@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var normalSpeed : int = 65
+@export var normalSpeed : int = 0
 var SPEED : int = normalSpeed
 @export var maxHealth : int = 300
 var player
