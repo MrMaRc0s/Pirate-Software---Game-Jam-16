@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b8uixtgstm436" path="res://Scenes/neutrophils_spawner.tscn" id="2_6crgp"]
 [ext_resource type="PackedScene" uid="uid://bfee4nxn6fo15" path="res://Scenes/natural_killer_cell_spawner.tscn" id="2_h306n"]
 [ext_resource type="Texture2D" uid="uid://dj7uhxvdheald" path="res://Tileset/Red tiles.jpg" id="2_tm8ol"]
-[ext_resource type="PackedScene" uid="uid://j2hesw34hoea" path="res://Scenes/pause_menu.tscn" id="6_tqoyh"]
+[ext_resource type="PackedScene" uid="uid://c6ckd5d0o5vlv" path="res://Scenes/pause_menu.tscn" id="6_tqoyh"]
 [ext_resource type="PackedScene" uid="uid://ctqe6qudxo8f0" path="res://Scenes/kamikaziSpawner.tscn" id="6_wv62e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va7no"]
@@ -267,6 +267,5 @@ collision_mask = 8
 polygon = PackedVector2Array(2, -3, 3, -16, 1222, -21, 1212, 735, -24, 751, -15, -16, 1, -16, 0, 720, 1199, 720, 1200, -3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_tqoyh")]

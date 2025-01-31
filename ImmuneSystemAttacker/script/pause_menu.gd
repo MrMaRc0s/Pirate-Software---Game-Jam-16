@@ -1,31 +1,17 @@
 extends Control
 
-@onready var optionsMenu = preload("res://Scenes/pause_menu.tscn")
-func _ready():
-	$AnimationPlayer.play("RESET")
+var _is_paused: bool = false:
+	set = set_paused
 
-func resume():
-	get_tree().paused = false
-	Global.pause = false
-	$AnimationPlayer.play_backwards("blur")
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		_is_paused = !_is_paused
 
-func pause():
-	get_tree().paused = true
-	Global.pause = true
-	$AnimationPlayer.play("blur")
+func set_paused(value:bool) -> void:
+	_is_paused = value
+	get_tree().paused = _is_paused
+	visible = _is_paused
 
-func testEsc():
-	if Input.is_action_just_pressed("esc") and !get_tree().paused:
-		pause()
-	elif Input.is_action_just_pressed("esc") and get_tree().paused:
-		resume()
 
-func _process(delta):
-	testEsc()
-
-func _on_button_pressed() -> void:
-	resume()
-
-func _on_button_2_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
-	
+func _on_resume_button_pressed() -> void:
+	_is_paused = false

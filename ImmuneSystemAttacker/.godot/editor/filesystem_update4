@@ -1,0 +1,4 @@
+res://Scenes/pause_menu.tscn
+res://Scenes/world.tscn
+res://script/pause_menu.gd
+res://script/world.gd
