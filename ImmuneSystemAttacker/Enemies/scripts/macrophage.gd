@@ -10,6 +10,7 @@ var playerInRange : bool = false
 var attackCooldown : bool = false
 @export var dmg : int = 10
 @export var xpDrop : int = 200
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	var players = get_tree().get_nodes_in_group("player")
@@ -82,3 +83,4 @@ func _on_took_damage_timeout() -> void:
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if $AnimatedSprite2D.animation == "attack" and $AnimatedSprite2D.frame == 3:
 		player.take_damage(dmg)
+		audio_stream_player_2d.play()

@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed : int = 200  # Bullet speed
 var direction: Vector2 = Vector2.ZERO
 var pos : Vector2  # Starting position
+@onready var sfx_knife_1: AudioStreamPlayer2D = $sfx_knife_1
 
 func _ready():
 	global_position = pos  # Set initial position

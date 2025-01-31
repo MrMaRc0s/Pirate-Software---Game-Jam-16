@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwg1qlu07jlk3"]
+[gd_scene load_steps=24 format=3 uid="uid://cwg1qlu07jlk3"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/antibodies.gd" id="1_whevs"]
 [ext_resource type="Texture2D" uid="uid://b7ylst0ou5av3" path="res://Enemies/Assets/Antibodies/Antibodies.png" id="2_72pd1"]
 [ext_resource type="Texture2D" uid="uid://bpwofbp8jtdjq" path="res://Enemies/Assets/Antibodies/AntibodiesAttack.png" id="2_eqmxj"]
+[ext_resource type="AudioStream" uid="uid://bq28spckjliwk" path="res://SFX/buketas.mp3" id="4_ib8xr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkrtw"]
 atlas = ExtResource("2_eqmxj")
@@ -179,6 +180,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="tookDamage" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ib8xr")
+bus = &"Sfx"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]

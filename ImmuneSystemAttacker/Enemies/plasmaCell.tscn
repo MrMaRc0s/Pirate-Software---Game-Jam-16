@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://kqy6xutjycwn"]
+[gd_scene load_steps=25 format=3 uid="uid://kqy6xutjycwn"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/plasma_cell.gd" id="1_rv674"]
 [ext_resource type="Texture2D" uid="uid://bc2u5fn610x6s" path="res://Enemies/Assets/PlasmaCell/PlasmaIdle.png" id="2_3k24w"]
 [ext_resource type="Texture2D" uid="uid://dklfy7qxlgdeq" path="res://Enemies/Assets/PlasmaCell/PlasmaNecro.png" id="2_uc3uu"]
+[ext_resource type="AudioStream" uid="uid://k0rky80tyd7w" path="res://SFX/plasma_cell.mp3" id="4_gtlrx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jrgmi"]
 atlas = ExtResource("2_uc3uu")
@@ -199,6 +200,11 @@ vertical_alignment = 1
 [node name="Projectile" type="Node2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gtlrx")
+volume_db = -14.5
+bus = &"Sfx"
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

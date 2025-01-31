@@ -10,9 +10,14 @@ var playerInRange : bool = false
 @export var dmg : int = 33
 @export var xpDrop : int = 200
 var attacking : bool = false
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
-	player = get_node("../../Player")
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0]  # Assign the first found player
+	else:
+		print("ERROR: Player not found!")
 	$AnimatedSprite2D.play("default")
 	$DisplayDmg.text = ""
 
@@ -48,7 +53,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		SPEED = 0
 		$AnimatedSprite2D.play("Attack")
 		$Boom.start(1)
-
+		audio_stream_player_2d.play()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):

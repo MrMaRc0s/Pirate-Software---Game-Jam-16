@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://cv1gi8jdyi7rl"]
+[gd_scene load_steps=34 format=3 uid="uid://cv1gi8jdyi7rl"]
 
 [ext_resource type="Script" path="res://script/knife.gd" id="1_7wc7d"]
 [ext_resource type="Texture2D" uid="uid://btaaaoikhvtdg" path="res://PlayerModel/deksiMaxairi.png" id="2_o8lok"]
 [ext_resource type="Texture2D" uid="uid://c4ocgnm5832ep" path="res://PlayerModel/KnifeLEFT.png" id="3_ocgl6"]
+[ext_resource type="AudioStream" uid="uid://bnhr6krdwmioo" path="res://SFX/mainknife1.mp3" id="4_wi5r5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgrq8"]
 atlas = ExtResource("2_o8lok")
@@ -226,5 +227,10 @@ collision_mask = 204
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iuwc6")
+
+[node name="sfx_knife_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wi5r5")
+volume_db = -14.0
+bus = &"Sfx"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

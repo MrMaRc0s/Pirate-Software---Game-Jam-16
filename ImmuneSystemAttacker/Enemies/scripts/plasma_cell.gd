@@ -13,6 +13,7 @@ var attackCooldown : bool = false
 @export var xpDrop : int = 300
 const projectile = preload("res://Scenes/laser.tscn")
 const antibodies = preload("res://Enemies/antibodies.tscn")
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	self.scale = Vector2(2, 2)
@@ -61,6 +62,7 @@ func spawnAntibodies():
 	if not spawnCooldown:
 		spawnCooldown = true
 		$AnimatedSprite2D.play("arise")
+		audio_stream_player_2d.play()
 		$SpawnTimer.start(10)
 		
 

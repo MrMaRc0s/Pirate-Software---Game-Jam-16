@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_8wq6b"]
 [ext_resource type="Texture2D" uid="uid://2khm6pfer12d" path="res://background.jpg" id="1_n7k8q"]
 [ext_resource type="PackedScene" uid="uid://kh8kt7uq21m2" path="res://Scenes/options_menu.tscn" id="3_ftbtj"]
-[ext_resource type="AudioStream" uid="uid://lxlrtt111bua" path="res://soundtracks/main_menu_theme_song.mp3" id="4_utmu8"]
+[ext_resource type="AudioStream" uid="uid://ctuimwt5i8edt" path="res://soundtracks/menu_track.mp3" id="4_tu41c"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -76,6 +76,7 @@ theme_override_font_sizes/font_size = 150
 text = "Options"
 
 [node name="WikiButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(120, 32)
 layout_mode = 2
 theme_override_font_sizes/font_size = 150
@@ -86,7 +87,7 @@ visible = false
 layout_mode = 1
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_utmu8")
+stream = ExtResource("4_tu41c")
 volume_db = -14.991
 autoplay = true
 bus = &"Music"

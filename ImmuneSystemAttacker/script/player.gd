@@ -17,6 +17,10 @@ var xp : int = 0
 var walking : bool = false
 var closest_enemy = null
 const knife = preload("res://Scenes/Knife.tscn")
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var sfx_knife_1: AudioStreamPlayer2D = $sfx_knife_1
+@onready var sfx_knife_2: AudioStreamPlayer2D = $sfx_knife_2
+
 
 func _ready():
 	play_anim("hahaha")
@@ -97,6 +101,7 @@ func take_damage(amount: int):
 		die()
 	else:
 		turn_red()
+		audio_stream_player_2d.play()
 
 func turn_red():
 	$AnimatedSprite2D.modulate = Color(1, 0.5, 0.5)
@@ -156,7 +161,6 @@ func fire():
 		knife_instance.direction = direction
 		knife_instance.scale = Vector2(0.7, 0.7)
 		get_parent().add_child(knife_instance)  # Add the instantiated knife to the scene
-
 	
 
 func _on_timer_timeout() -> void:
@@ -167,6 +171,8 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	if $AnimatedSprite2D.animation == "attackOnMove" and $AnimatedSprite2D.frame == 6:
 		Global.ReverseKnife = false
 		fire()
+		sfx_knife_1.play()
 	if $AnimatedSprite2D.animation == "attackOnIdle" and $AnimatedSprite2D.frame == 4:
 		Global.ReverseKnife = true
 		fire() 
+		sfx_knife_2.play()
