@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cms6om4dboeq7"]
+
+[ext_resource type="Texture2D" uid="uid://b8hh5gihcyh5j" path="res://Enemies/Assets/PlasmaCell/Laser.png" id="1_48w5p"]
+[ext_resource type="Script" path="res://Scenes/laser.gd" id="1_l8ag6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dxrxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_48w5p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuwc6"]
+radius = 3.0
+height = 20.0
+
+[node name="Laser" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("1_l8ag6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_dxrxu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iuwc6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

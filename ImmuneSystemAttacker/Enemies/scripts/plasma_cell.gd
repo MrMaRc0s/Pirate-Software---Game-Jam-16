@@ -7,12 +7,15 @@ var SPEED : int = normalSpeed
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
+var spawnCooldown : bool = false
 var attackCooldown : bool = false
 @export var dmg : int = 20
 @export var xpDrop : int = 300
-const projectile = preload("res://Scenes/projectile.tscn")
+const projectile = preload("res://Scenes/laser.tscn")
+const antibodies = preload("res://Enemies/antibodies.tscn")
 
 func _ready():
+	self.scale = Vector2(2, 2)
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]  # Assign the first found player
@@ -39,38 +42,66 @@ func enemy():
 func _physics_process(_delta):
 	updateHealthbar()
 	attackPlayer()
+	spawnAntibodies()
 	if Global.PlayerAlive:
 		$AnimatedSprite2D.flip_h = (player.position.x < position.x)
 		var direction = (player.position - position).normalized()
 		velocity = direction * SPEED
 		move_and_slide()
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
-		SPEED = 0
-		playerInRange = true
-		
-
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.has_method("player"):
-		SPEED = normalSpeed
-		playerInRange = false
-		$AnimatedSprite2D.play("default")
 		
 func attackPlayer():
-	if not attackCooldown and playerInRange:
-		$AnimatedSprite2D.play("attack")
-		fire()
+	if not attackCooldown:
+		fire1()
+		$AttackCooldown2.start(0.6)
+		$AttackCooldown3.start(1.2)
 		attackCooldown = true
-		$AttackCooldown.start()
+		$AttackCooldown.start(7)
 
-func fire():
-	var bullet = projectile.instantiate()
-	bullet.pos = global_position + Vector2(0, 8)
-	bullet.direction = (player.position - position).angle() 
-	get_parent().add_child(bullet)
+func spawnAntibodies():
+	if not spawnCooldown:
+		spawnCooldown = true
+		$AnimatedSprite2D.play("arise")
+		$SpawnTimer.start(10)
+		
+
+func fire1():
+	var bullet1 = projectile.instantiate()
+	bullet1.pos = global_position + Vector2(-3, 2)
+	bullet1.direction = (player.position - Vector2(40, 40) - position).angle()
+	bullet1.rotation = bullet1.direction
+	get_parent().add_child(bullet1)
+
+	var bullet2 = projectile.instantiate()
+	bullet2.pos = global_position + Vector2(4, 2)
+	bullet2.direction = (player.position - Vector2(40, 35) - position).angle()
+	bullet2.rotation = bullet2.direction
+	get_parent().add_child(bullet2)
+	
+func fire2():
+	var bullet1 = projectile.instantiate()
+	bullet1.pos = global_position + Vector2(5, -12)
+	bullet1.direction = (player.position - Vector2(40, 40) - position).angle()
+	bullet1.rotation = bullet1.direction
+	get_parent().add_child(bullet1)
+
+	var bullet2 = projectile.instantiate()
+	bullet2.pos = global_position + Vector2(-2, -12)
+	bullet2.direction = (player.position - Vector2(40, 35) - position).angle()
+	bullet2.rotation = bullet2.direction
+	get_parent().add_child(bullet2)
+	
+func fire3():
+	var bullet1 = projectile.instantiate()
+	bullet1.pos = global_position + Vector2(-1, -21)
+	bullet1.direction = (player.position - Vector2(40, 40) - position).angle() 
+	bullet1.rotation = bullet1.direction
+	get_parent().add_child(bullet1) 
+
+	var bullet2 = projectile.instantiate()
+	bullet2.pos = global_position + Vector2(5, -21)
+	bullet2.direction = (player.position - Vector2(40, 35) - position).angle() 
+	bullet2.rotation = bullet2.direction
+	get_parent().add_child(bullet2) 
 
 
 func die():
@@ -91,3 +122,26 @@ func updateHealthbar():
 func _on_took_damage_timeout() -> void:
 	$DisplayDmg.text = ""
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+
+
+
+func _on_attack_cooldown_2_timeout() -> void:
+	fire2()
+	$AttackCooldown2.stop()
+
+
+func _on_attack_cooldown_3_timeout() -> void:
+	fire3()
+	$AttackCooldown3.stop()
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if $AnimatedSprite2D.animation == "arise" and $AnimatedSprite2D.frame == 6:
+		var enemyy = antibodies.instantiate()
+		get_parent().add_child(enemyy)
+	if $AnimatedSprite2D.animation == "arise" and $AnimatedSprite2D.frame == 9:
+		$AnimatedSprite2D.play("default")
+
+
+func _on_spawn_timer_timeout() -> void:
+	spawnCooldown = false

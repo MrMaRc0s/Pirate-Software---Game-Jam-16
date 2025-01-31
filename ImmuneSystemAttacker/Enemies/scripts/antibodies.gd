@@ -1,18 +1,22 @@
 extends CharacterBody2D
 
 
-@export var normalSpeed : int = 65
+@export var normalSpeed : int = 60
 var SPEED : int = normalSpeed
-@export var maxHealth : int = 20
+@export var maxHealth : int = 50
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
 var attackCooldown : bool = false
-@export var dmg : int = 20
-@export var xpDrop : int = 300
+@export var dmg : int = 10
+@export var xpDrop : int = 200
 
 func _ready():
-	player = get_node("../../Player")
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0]  # Assign the first found player
+	else:
+		print("ERROR: Player not found!")
 	$AnimatedSprite2D.play("default")
 	$DisplayDmg.text = ""
 
@@ -26,7 +30,7 @@ func takeDmg(amount: int):
 func turn_red():
 	$AnimatedSprite2D.modulate = Color(1, 0.5, 0.5)
 	$tookDamage.start(0.3)
-	
+
 func enemy():
 	pass
 
@@ -55,20 +59,13 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		$AnimatedSprite2D.play("default")
 		
 func attackPlayer():
-	if not attackCooldown and playerInRange:
+	if playerInRange:
 		$AnimatedSprite2D.play("attack")
-		player.take_damage(dmg)
-		attackCooldown = true
-		$AttackCooldown.start()
 	
 
 func die():
 	player.giveXp(xpDrop)
 	queue_free()
-
-
-func _on_attack_cooldown_timeout() -> void:
-	attackCooldown = false
 	
 func updateHealthbar():
 	var healthbar = $Healthbar
@@ -80,3 +77,8 @@ func updateHealthbar():
 func _on_took_damage_timeout() -> void:
 	$DisplayDmg.text = ""
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if $AnimatedSprite2D.animation == "attack" and $AnimatedSprite2D.frame == 3:
+		player.take_damage(dmg)

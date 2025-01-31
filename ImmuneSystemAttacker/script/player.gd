@@ -6,6 +6,7 @@ var enemiesInRange: Array[Node2D] = []
 @export var maxHealth : int = 100000
 var face : bool = false
 var attackCooldown : bool = true
+var attaking : bool = false
 var health : int = maxHealth
 @export var dmg : int = 1
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
@@ -14,6 +15,8 @@ var level : int = 1
 var xp : int = 0
 @onready var damageTimer = $DamageTimer
 var walking : bool = false
+var closest_enemy = null
+const knife = preload("res://Scenes/Knife.tscn")
 
 func _ready():
 	play_anim("hahaha")
@@ -25,16 +28,18 @@ func _physics_process(delta):
 	player_movement(delta)
 	move_and_slide() 
 	AttackEnemy()
-	if velocity != Vector2(0,0):
-		startWalking()
-	else:
+	if velocity != Vector2(0,0) && !attaking:
+		play_anim("Walking")
+	elif velocity == Vector2(0,0) && !attaking:
 		play_anim("hahaha")
 		walking = false
-		
-func startWalking():
-	if walking == false:
-		play_anim("Walking")
-		#$StartWalking.start(1)
+	elif attaking && velocity != Vector2(0,0):
+		Global.Dmg = dmg
+		play_anim("attackOnMove")
+	elif attaking && velocity == Vector2(0,0):
+		Global.Dmg = dmg + (dmg / 2)
+		play_anim("attackOnIdle")
+	
 
 func player_movement(_delta):
 	# Reset movement velocity
@@ -53,9 +58,8 @@ func player_movement(_delta):
 		velocity.y -= speed
 
 func play_anim(anim: StringName):
-	var animation = $AnimatedSprite2D
-	animation.flip_h = face  # Flip sprite based on facing direction
-	animation.play(anim)
+	$AnimatedSprite2D.flip_h = face  # Flip sprite based on facing direction
+	$AnimatedSprite2D.play(anim)
 
 func _on_player_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("takeDmg") and not enemiesInRange.has(body):
@@ -64,14 +68,15 @@ func _on_player_hitbox_body_entered(body: Node2D) -> void:
 func _on_player_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("takeDmg"):
 		enemiesInRange.erase(body)
+		if len(enemiesInRange) <=0:
+			attaking = false
 		
 func AttackEnemy():
 	if not enemiesInRange.is_empty() and attackCooldown:
+		attaking = true
 		attackCooldown = false
 		$AttackCooldown.start()
-		
 		 # Find the closest enemy
-		var closest_enemy = null
 		var closest_distance = INF
 		for enemy in enemiesInRange:
 			if is_instance_valid(enemy):
@@ -81,7 +86,7 @@ func AttackEnemy():
 					closest_enemy = enemy
 		
 		if closest_enemy:
-			closest_enemy.takeDmg(dmg)
+			#closest_enemy.takeDmg(dmg)
 			if closest_enemy.health <= 0:
 				enemiesInRange.erase(closest_enemy)
 
@@ -142,12 +147,23 @@ func _on_health_regen_timeout() -> void:
 func player():
 	pass
 
+func fire():
+	if closest_enemy and is_instance_valid(closest_enemy):  # Ensure the enemy exists
+		var knife_instance = knife.instantiate() # Instantiate the knife
+		var direction = (closest_enemy.global_position - global_position).normalized()  # Calculate direction to enemy
+		knife_instance.pos = global_position + Vector2(-3, 2)  # Set knife's initial position
+		knife_instance.rotation = direction.angle()  # Set knife's rotation to face the enemy
+		knife_instance.direction = direction
+		get_parent().add_child(knife_instance)  # Add the instantiated knife to the scene
 
-func _on_start_walking_timeout() -> void:
-	$StartWalking.stop()
-	walking = true
-	play_anim("Walking")
 	
 
 func _on_timer_timeout() -> void:
 	$DisplayXpGain.text = ""
+	
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if $AnimatedSprite2D.animation == "attackOnMove" and $AnimatedSprite2D.frame == 6:
+		fire()
+	if $AnimatedSprite2D.animation == "AttackOnIdle" and $AnimatedSprite2D.frame == 4:
+		fire() 

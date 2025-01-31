@@ -1,7 +1,32 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd5xkrxqocfcf"]
+[gd_scene load_steps=19 format=3 uid="uid://dd5xkrxqocfcf"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/macrophage.gd" id="1_5upri"]
+[ext_resource type="Texture2D" uid="uid://me4j8qbnidb" path="res://Enemies/Assets/Macrophage/MacrophageAttack.png" id="2_rkjtf"]
 [ext_resource type="Texture2D" uid="uid://cpxxy57fxy4xt" path="res://Enemies/Assets/Macrophage/Macrophage.png" id="2_ugr8u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8mvv"]
+atlas = ExtResource("2_rkjtf")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv3l3"]
+atlas = ExtResource("2_rkjtf")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mprr"]
+atlas = ExtResource("2_rkjtf")
+region = Rect2(0, 42, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1th77"]
+atlas = ExtResource("2_rkjtf")
+region = Rect2(42, 42, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmvl6"]
+atlas = ExtResource("2_rkjtf")
+region = Rect2(0, 84, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bryo2"]
+atlas = ExtResource("2_rkjtf")
+region = Rect2(42, 84, 42, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85tde"]
 atlas = ExtResource("2_ugr8u")
@@ -21,6 +46,29 @@ region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8mvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv3l3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mprr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1th77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmvl6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bryo2")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_85tde")
@@ -47,6 +95,7 @@ radius = 33.1361
 
 [sub_resource type="SystemFont" id="SystemFont_sde4m"]
 font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_cmf0r"]
@@ -64,8 +113,8 @@ script = ExtResource("1_5upri")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
-frame = 1
-frame_progress = 0.934514
+animation = &"attack"
+frame_progress = 0.179431
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 light_mask = 2
@@ -77,9 +126,6 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
-
-[node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.663
 
 [node name="Healthbar" type="ProgressBar" parent="."]
 modulate = Color(0.886275, 0.00392157, 0.886275, 1)
@@ -101,7 +147,7 @@ vertical_alignment = 1
 
 [node name="tookDamage" type="Timer" parent="."]
 
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="tookDamage" to="." method="_on_took_damage_timeout"]

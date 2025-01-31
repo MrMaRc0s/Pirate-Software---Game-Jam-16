@@ -251,9 +251,6 @@ tile_set = SubResource("TileSet_g6e00")
 
 [node name="NeutrophilsSpawner" parent="TileMapLayer" instance=ExtResource("2_6crgp")]
 
-[node name="Neutrophil" parent="TileMapLayer/NeutrophilsSpawner" instance=ExtResource("4_55bmj")]
-position = Vector2(607, 428)
-
 [node name="NaturalKillCellSpawner" parent="TileMapLayer" instance=ExtResource("2_h306n")]
 
 [node name="MacrophageSpawner" parent="TileMapLayer" instance=ExtResource("2_1m8kd")]
@@ -274,3 +271,6 @@ polygon = PackedVector2Array(2, -3, 3, -16, 1222, -21, 1212, 735, -24, 751, -15,
 visible = false
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_tqoyh")]
+
+[node name="Neutrophil" parent="." instance=ExtResource("4_55bmj")]
+position = Vector2(652, 426)

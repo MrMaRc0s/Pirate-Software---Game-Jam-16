@@ -13,7 +13,11 @@ var attackCooldown : bool = false
 const projectile = preload("res://Scenes/projectile.tscn")
 
 func _ready():
-	player = get_node("../../Player")
+	var players = get_tree().get_nodes_in_group("player")
+	if players.size() > 0:
+		player = players[0]  # Assign the first found player
+	else:
+		print("ERROR: Player not found!")
 	$AnimatedSprite2D.play("default")
 	$DisplayDmg.text = ""
 
@@ -63,7 +67,6 @@ func fire():
 	var bullet = projectile.instantiate()
 	bullet.pos = global_position + Vector2(0, 8)
 	bullet.direction = (player.position - position).angle() 
-	bullet.scale = Vector2(2, 2)
 	get_parent().add_child(bullet)
 
 
@@ -88,5 +91,5 @@ func _on_took_damage_timeout() -> void:
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	if $AnimatedSprite2D.animation == "attack" and $AnimatedSprite2D.frame == 3:
+	if $AnimatedSprite2D.animation == "attack" and $AnimatedSprite2D.frame == 2:
 		fire()

@@ -1,0 +1,111 @@
+[gd_scene load_steps=16 format=3 uid="uid://cv1gi8jdyi7rl"]
+
+[ext_resource type="Script" path="res://Scenes/knife.gd" id="1_7wc7d"]
+[ext_resource type="Texture2D" uid="uid://btaaaoikhvtdg" path="res://PlayerModel/deksiMaxairi.png" id="2_o8lok"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgrq8"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duhyr"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qr2j"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(50, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbqbn"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(0, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e27k3"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(25, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kcx8"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(50, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2335c"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(0, 50, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acxi5"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(25, 50, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq5ow"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(50, 50, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kglqa"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(0, 75, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xla5m"]
+atlas = ExtResource("2_o8lok")
+region = Rect2(25, 75, 25, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dxrxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgrq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duhyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qr2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbqbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e27k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kcx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2335c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acxi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq5ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kglqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xla5m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iuwc6"]
+radius = 11.0
+height = 50.0
+
+[node name="Knife" type="CharacterBody2D"]
+collision_mask = 196
+script = ExtResource("1_7wc7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 2)
+sprite_frames = SubResource("SpriteFrames_dxrxu")
+frame_progress = 0.525711
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 204
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iuwc6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
