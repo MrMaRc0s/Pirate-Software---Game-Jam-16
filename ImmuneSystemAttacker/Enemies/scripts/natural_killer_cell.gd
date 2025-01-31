@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var normalSpeed : int = 120
 var SPEED : int = normalSpeed
-@export var maxHealth : int = 30
+@export var maxHealth : int = 40
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
@@ -53,7 +53,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		SPEED = 0
 		$AnimatedSprite2D.play("Attack")
 		$Boom.start(1)
-		audio_stream_player_2d.play()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
@@ -79,3 +78,8 @@ func _on_boom_timeout() -> void:
 func _on_took_damage_timeout() -> void:
 	$DisplayDmg.text = ""
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if $AnimatedSprite2D.animation == "Attack" && $AnimatedSprite2D.frame == 2:
+		audio_stream_player_2d.play()

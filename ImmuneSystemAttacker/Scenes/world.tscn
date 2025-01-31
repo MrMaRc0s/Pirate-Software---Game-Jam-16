@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dij8dw6m3qkwh"]
+[gd_scene load_steps=13 format=4 uid="uid://dij8dw6m3qkwh"]
 
 [ext_resource type="Script" path="res://script/world.gd" id="1_xaras"]
 [ext_resource type="PackedScene" uid="uid://bscb38e22u553" path="res://Scenes/player.tscn" id="2_0d7ca"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ckd5d0o5vlv" path="res://Scenes/pause_menu.tscn" id="6_tqoyh"]
 [ext_resource type="PackedScene" uid="uid://ctqe6qudxo8f0" path="res://Scenes/kamikaziSpawner.tscn" id="6_wv62e"]
 [ext_resource type="AudioStream" uid="uid://bdkv0rgqr60wp" path="res://soundtracks/idea3.mp3" id="9_vakl0"]
+[ext_resource type="PackedScene" uid="uid://cgp6gsowxrm0b" path="res://Enemies/naturalKillerCell.tscn" id="10_nhkxd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cuyf1"]
 texture = ExtResource("4_ad2k6")
@@ -27,11 +28,13 @@ position = Vector2(5, -39)
 script = ExtResource("1_xaras")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." groups=["walls"]]
+position = Vector2(2000, 0)
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" groups=["walls"]]
-polygon = PackedVector2Array(2, -3, 3, -16, 1222, -21, 1212, 735, -24, 751, -15, -16, 1, -16, 0, 720, 1199, 720, 1200, -3)
+position = Vector2(-1936, -46)
+polygon = PackedVector2Array(-438, -2, -436, -93, 1279, -69, 1270, 1066, -421, 1215, -435, 1, -240, -2, -241, 1021, 1201, 1021, 1200, -3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -54,6 +57,10 @@ tile_set = SubResource("TileSet_7tjkx")
 [node name="MacrophageSpawner" parent="TileMapLayer" instance=ExtResource("2_1m8kd")]
 
 [node name="KamikaziSpawner" parent="TileMapLayer" instance=ExtResource("6_wv62e")]
+position = Vector2(-174, 974)
 
 [node name="Player" parent="TileMapLayer" groups=["player"] instance=ExtResource("2_0d7ca")]
 position = Vector2(751, 411)
+
+[node name="NaturalKillerCell" parent="." instance=ExtResource("10_nhkxd")]
+position = Vector2(624, 408)

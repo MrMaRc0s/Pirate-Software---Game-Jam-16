@@ -1,22 +1,16 @@
 extends CharacterBody2D
 
-
-@export var normalSpeed : int = 0
-var SPEED : int = normalSpeed
 @export var maxHealth : int = 300
 var player
 var health : int = maxHealth
-var playerInRange : bool = false
 var spawnCooldown : bool = false
 var attackCooldown : bool = false
-@export var dmg : int = 20
 @export var xpDrop : int = 300
 const projectile = preload("res://Scenes/laser.tscn")
 const antibodies = preload("res://Enemies/antibodies.tscn")
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
-	self.scale = Vector2(2, 2)
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		player = players[0]  # Assign the first found player
@@ -46,9 +40,8 @@ func _physics_process(_delta):
 	spawnAntibodies()
 	if Global.PlayerAlive:
 		$AnimatedSprite2D.flip_h = (player.position.x < position.x)
-		var direction = (player.position - position).normalized()
-		velocity = direction * SPEED
-		move_and_slide()
+	else:
+		queue_free()
 		
 func attackPlayer():
 	if not attackCooldown:
@@ -56,7 +49,7 @@ func attackPlayer():
 		$AttackCooldown2.start(0.6)
 		$AttackCooldown3.start(1.2)
 		attackCooldown = true
-		$AttackCooldown.start(7)
+		$AttackCooldown.start(5)
 
 func spawnAntibodies():
 	if not spawnCooldown:
@@ -139,8 +132,18 @@ func _on_attack_cooldown_3_timeout() -> void:
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if $AnimatedSprite2D.animation == "arise" and $AnimatedSprite2D.frame == 6:
-		var enemyy = antibodies.instantiate()
-		get_parent().add_child(enemyy)
+		var enemy = antibodies.instantiate() # Instantiate the knife
+		enemy.position = global_position + Vector2(0, 60)  # Set knife's initial position
+		get_parent().add_child(enemy)
+		var enemy2 = antibodies.instantiate()
+		enemy2.position = global_position + Vector2(40, -40)  # Set knife's initial position
+		get_parent().add_child(enemy2)
+		
+		
+		var enemy5 = antibodies.instantiate()
+		enemy5.position = global_position + Vector2(-40, -40)  # Set knife's initial position
+		get_parent().add_child(enemy5)
+		
 	if $AnimatedSprite2D.animation == "arise" and $AnimatedSprite2D.frame == 9:
 		$AnimatedSprite2D.play("default")
 

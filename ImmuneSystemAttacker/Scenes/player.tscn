@@ -393,7 +393,6 @@ multichannel_signed_distance_field = true
 [sub_resource type="LabelSettings" id="LabelSettings_ftx6i"]
 line_spacing = 2.0
 font = SubResource("SystemFont_drelp")
-font_size = 8
 outline_size = 1
 outline_color = Color(0.530242, 0, 0.0861157, 1)
 shadow_size = 2
@@ -408,12 +407,10 @@ animation = &"attackOnIdle"
 frame_progress = 0.375468
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1, 4)
 shape = SubResource("CapsuleShape2D_tj5jp")
 
 [node name="PlayerRange" type="Area2D" parent="."]
-visible = false
 collision_mask = 196
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRange"]
@@ -424,10 +421,10 @@ shape = SubResource("CircleShape2D_6s8jg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
-limit_left = 0
-limit_top = 0
-limit_right = 1150
-limit_bottom = 700
+limit_left = -171
+limit_top = -87
+limit_right = 1264
+limit_bottom = 935
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
@@ -461,10 +458,10 @@ wait_time = 0.3
 [node name="StartWalking" type="Timer" parent="."]
 
 [node name="DisplayXpGain" type="Label" parent="."]
-offset_left = 20.0
-offset_top = 14.0
-offset_right = 43.0
-offset_bottom = 37.0
+offset_left = 16.0
+offset_top = 11.0
+offset_right = 39.0
+offset_bottom = 34.0
 text = "30"
 label_settings = SubResource("LabelSettings_ftx6i")
 horizontal_alignment = 1

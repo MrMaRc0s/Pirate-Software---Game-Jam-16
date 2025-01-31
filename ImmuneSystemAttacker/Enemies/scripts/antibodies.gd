@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 
 @export var normalSpeed : int = 60
-var SPEED : int = normalSpeed
-@export var maxHealth : int = 50
+var SPEED : int = 0
+@export var maxHealth : int = 30
 var player
 var health : int = maxHealth
 var playerInRange : bool = false
@@ -18,7 +18,7 @@ func _ready():
 		player = players[0]  # Assign the first found player
 	else:
 		print("ERROR: Player not found!")
-	$AnimatedSprite2D.play("default")
+	$AnimatedSprite2D.play("rise")
 	$DisplayDmg.text = ""
 
 func takeDmg(amount: int):
@@ -44,6 +44,8 @@ func _physics_process(_delta):
 		var direction = (player.position - position).normalized()
 		velocity = direction * SPEED
 		move_and_slide()
+	else:
+		queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -84,3 +86,8 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	if $AnimatedSprite2D.animation == "attack" and $AnimatedSprite2D.frame == 3:
 		player.take_damage(dmg)
 		audio_stream_player_2d.play()
+	if $AnimatedSprite2D.animation == "rise":
+		SPEED = 0
+		if $AnimatedSprite2D.frame == 4:
+			$AnimatedSprite2D.play("default")
+			SPEED = normalSpeed

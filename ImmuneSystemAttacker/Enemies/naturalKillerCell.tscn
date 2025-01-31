@@ -92,7 +92,7 @@ animations = [{
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojmti"]
-radius = 19.8494
+radius = 36.0
 
 [sub_resource type="SystemFont" id="SystemFont_xsl75"]
 font_names = PackedStringArray("Consolas")
@@ -102,7 +102,6 @@ multichannel_signed_distance_field = true
 [sub_resource type="LabelSettings" id="LabelSettings_78yye"]
 line_spacing = 2.0
 font = SubResource("SystemFont_xsl75")
-font_size = 8
 outline_size = 1
 outline_color = Color(0.530242, 0, 0.0861157, 1)
 shadow_size = 2
@@ -121,7 +120,6 @@ visible = false
 shape = SubResource("CircleShape2D_oalgo")
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CircleShape2D_ojmti")
@@ -153,6 +151,7 @@ stream = ExtResource("4_2lq4d")
 volume_db = -1.0
 bus = &"Sfx"
 
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Boom" to="." method="_on_boom_timeout"]

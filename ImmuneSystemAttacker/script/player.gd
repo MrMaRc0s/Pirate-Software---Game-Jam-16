@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Variables
 var enemiesInRange: Array[Node2D] = []
 @export var speed : int = 100
-@export var maxHealth : int = 200
+@export var maxHealth : int = 160
 var face : bool = false
 var attackCooldown : bool = true
 var attaking : bool = false
@@ -135,9 +135,11 @@ func giveXp(amount: int):
 	xp+=amount
 	print("xp= ",xp)
 	if xp >=nextLvl:
+		maxHealth+=10
+		dmg+=1
 		level+=1
 		xp -= nextLvl
-		nextLvl+=200
+		nextLvl+=350
 		print("Leveled up!!! ", level)
 
 func _on_health_regen_timeout() -> void:

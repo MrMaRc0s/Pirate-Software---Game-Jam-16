@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cwg1qlu07jlk3"]
+[gd_scene load_steps=30 format=3 uid="uid://cwg1qlu07jlk3"]
 
 [ext_resource type="Script" path="res://Enemies/scripts/antibodies.gd" id="1_whevs"]
 [ext_resource type="Texture2D" uid="uid://b7ylst0ou5av3" path="res://Enemies/Assets/Antibodies/Antibodies.png" id="2_72pd1"]
 [ext_resource type="Texture2D" uid="uid://bpwofbp8jtdjq" path="res://Enemies/Assets/Antibodies/AntibodiesAttack.png" id="2_eqmxj"]
+[ext_resource type="Texture2D" uid="uid://p57gtjkdvuia" path="res://Enemies/Assets/Antibodies/Undead.png" id="2_m5cao"]
 [ext_resource type="AudioStream" uid="uid://bq28spckjliwk" path="res://SFX/buketas.mp3" id="4_ib8xr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkrtw"]
@@ -61,6 +62,26 @@ region = Rect2(0, 64, 32, 32)
 atlas = ExtResource("2_72pd1")
 region = Rect2(32, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi6en"]
+atlas = ExtResource("2_m5cao")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr0l0"]
+atlas = ExtResource("2_m5cao")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ja68"]
+atlas = ExtResource("2_m5cao")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b6p1"]
+atlas = ExtResource("2_m5cao")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asce8"]
+atlas = ExtResource("2_m5cao")
+region = Rect2(0, 42, 42, 42)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_y8p3g"]
 animations = [{
 "frames": [{
@@ -114,6 +135,26 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi6en")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr0l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ja68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b6p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asce8")
+}],
+"loop": true,
+"name": &"rise",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wjbuo"]
@@ -132,7 +173,6 @@ multichannel_signed_distance_field = true
 [sub_resource type="LabelSettings" id="LabelSettings_3ac3f"]
 line_spacing = 2.0
 font = SubResource("SystemFont_igdko")
-font_size = 8
 outline_size = 1
 outline_color = Color(0.530242, 0, 0.0861157, 1)
 shadow_size = 2
@@ -144,8 +184,7 @@ script = ExtResource("1_whevs")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y8p3g")
-animation = &"attack"
-frame_progress = 0.710326
+animation = &"rise"
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)

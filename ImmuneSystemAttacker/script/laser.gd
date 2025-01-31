@@ -12,6 +12,8 @@ func _ready():
 func _physics_process(delta):
 	velocity = Vector2(speed, 0).rotated(direction)  # Move bullet forward
 	move_and_slide()
+	if !Global.PlayerAlive:
+		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):  # If the bullet hits the player
