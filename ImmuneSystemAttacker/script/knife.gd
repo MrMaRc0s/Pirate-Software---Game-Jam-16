@@ -10,6 +10,10 @@ func _ready():
 	$AnimatedSprite2D.play("default")
 
 func _physics_process(delta):
+	if Global.ReverseKnife:
+		$AnimatedSprite2D.play("reverse")
+	else:
+		$AnimatedSprite2D.play("default")
 	if direction != Vector2.ZERO:
 		velocity = direction * speed
 		move_and_slide()

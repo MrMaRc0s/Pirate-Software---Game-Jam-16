@@ -27,7 +27,7 @@ func timeToString() -> String:
 		Global.naturalKillerCell = true
 	if minn == 4 && !Global.Kamikazi:
 		Global.Kamikazi = true
-	if minn == 1 && !Global.boss:
+	if minn == 5 && !Global.boss:
 		Global.boss = true
 	return actualString
 

@@ -3,12 +3,12 @@ extends CharacterBody2D
 # Variables
 var enemiesInRange: Array[Node2D] = []
 @export var speed : int = 100
-@export var maxHealth : int = 100000
+@export var maxHealth : int = 200
 var face : bool = false
 var attackCooldown : bool = true
 var attaking : bool = false
 var health : int = maxHealth
-@export var dmg : int = 1
+@export var dmg : int = 15
 var currentTargetIndex: int = 0  # Keep track of which enemy to attack
 @export var nextLvl: int = 500
 var level : int = 1
@@ -72,7 +72,7 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 			attaking = false
 		
 func AttackEnemy():
-	if not enemiesInRange.is_empty() and attackCooldown:
+	if not enemiesInRange.is_empty():
 		attaking = true
 		attackCooldown = false
 		$AttackCooldown.start()
@@ -154,6 +154,7 @@ func fire():
 		knife_instance.pos = global_position + Vector2(-3, 2)  # Set knife's initial position
 		knife_instance.rotation = direction.angle()  # Set knife's rotation to face the enemy
 		knife_instance.direction = direction
+		knife_instance.scale = Vector2(0.7, 0.7)
 		get_parent().add_child(knife_instance)  # Add the instantiated knife to the scene
 
 	
@@ -164,6 +165,8 @@ func _on_timer_timeout() -> void:
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if $AnimatedSprite2D.animation == "attackOnMove" and $AnimatedSprite2D.frame == 6:
+		Global.ReverseKnife = false
 		fire()
-	if $AnimatedSprite2D.animation == "AttackOnIdle" and $AnimatedSprite2D.frame == 4:
+	if $AnimatedSprite2D.animation == "attackOnIdle" and $AnimatedSprite2D.frame == 4:
+		Global.ReverseKnife = true
 		fire() 

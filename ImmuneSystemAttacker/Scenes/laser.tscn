@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cms6om4dboeq7"]
 
 [ext_resource type="Texture2D" uid="uid://b8hh5gihcyh5j" path="res://Enemies/Assets/PlasmaCell/Laser.png" id="1_48w5p"]
-[ext_resource type="Script" path="res://Scenes/laser.gd" id="1_l8ag6"]
+[ext_resource type="Script" path="res://script/laser.gd" id="1_l8ag6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dxrxu"]
 animations = [{
