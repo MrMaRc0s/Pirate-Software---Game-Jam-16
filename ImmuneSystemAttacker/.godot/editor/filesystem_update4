@@ -1,13 +1,3 @@
-res://Scenes/Knife.tscn
-res://script/player.gd
 res://Scenes/world.tscn
+res://Scenes/Knife.tscn
 res://Scenes/player.tscn
-res://script/knife.gd
-res://Enemies/macrophage.tscn
-res://Enemies/scripts/macrophage.gd
-res://Enemies/naturalKillerCell.tscn
-res://Enemies/scripts/natural_killer_cell.gd
-res://Enemies/antibodies.tscn
-res://Enemies/scripts/antibodies.gd
-res://Enemies/plasmaCell.tscn
-res://Enemies/scripts/plasma_cell.gd

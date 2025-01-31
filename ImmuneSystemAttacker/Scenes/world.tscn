@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dij8dw6m3qkwh"]
+[gd_scene load_steps=12 format=4 uid="uid://dij8dw6m3qkwh"]
 
 [ext_resource type="Script" path="res://script/world.gd" id="1_xaras"]
 [ext_resource type="PackedScene" uid="uid://bscb38e22u553" path="res://Scenes/player.tscn" id="2_0d7ca"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c6ckd5d0o5vlv" path="res://Scenes/pause_menu.tscn" id="6_tqoyh"]
 [ext_resource type="PackedScene" uid="uid://ctqe6qudxo8f0" path="res://Scenes/kamikaziSpawner.tscn" id="6_wv62e"]
 [ext_resource type="AudioStream" uid="uid://bdkv0rgqr60wp" path="res://soundtracks/idea3.mp3" id="9_vakl0"]
-[ext_resource type="PackedScene" uid="uid://kqy6xutjycwn" path="res://Enemies/plasmaCell.tscn" id="10_lb0nl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_va7no"]
 texture = ExtResource("2_tm8ol")
@@ -277,6 +276,3 @@ stream = ExtResource("9_vakl0")
 volume_db = -14.991
 autoplay = true
 bus = &"Music"
-
-[node name="PlasmaCell" parent="." instance=ExtResource("10_lb0nl")]
-position = Vector2(564, 344)
